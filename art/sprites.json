@@ -1,0 +1,393 @@
+{
+ "hero_base": {
+  "name": "The Lampbearer (base)",
+  "role": "Player hero, starting look",
+  "source": {
+   "row_id": 491640,
+   "subject": "adventurer",
+   "caption": "idle adventurer with a short sword in high contrast",
+   "shard": "train-0005.parquet"
+  },
+  "composite": false
+ },
+ "knight_t1": {
+  "name": "Knight T1 Squire Plate",
+  "role": "",
+  "source": {
+   "row_id": 446802,
+   "subject": "knight",
+   "caption": "side-view bulky knight in flat colors",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "knight_t2": {
+  "name": "Knight T2 Warden Plate",
+  "role": "",
+  "source": {
+   "row_id": 445649,
+   "subject": "greatsword knight",
+   "caption": "sword-planted steel greatsword knight with an oversized blade",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "knight_t3": {
+  "name": "Knight T3 Lumen Paladin",
+  "role": "",
+  "source": {
+   "row_id": 448326,
+   "subject": "royal knight",
+   "caption": "side-view royal knight with fluted armor",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "arcanist_t1": {
+  "name": "Arcanist T1 Hedge Caster",
+  "role": "",
+  "source": {
+   "row_id": 462513,
+   "subject": "battle mage",
+   "caption": "broad battle mage with a breastplate over robes in flat colors",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "arcanist_t2": {
+  "name": "Arcanist T2 Stormwright",
+  "role": "",
+  "source": {
+   "row_id": 476860,
+   "subject": "storm mage",
+   "caption": "top-down storm mage with a bolt-shaped staff in bright colors",
+   "shard": "train-0005.parquet"
+  },
+  "composite": false
+ },
+ "arcanist_t3": {
+  "name": "Arcanist T3 Starloom Magus",
+  "role": "",
+  "source": {
+   "row_id": 448023,
+   "subject": "archmage",
+   "caption": "side-facing blue archmage with a tall crown-like hat",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "tinker_t1": {
+  "name": "Tinker T1 Scrap Apprentice",
+  "role": "",
+  "source": {
+   "row_id": 452186,
+   "subject": "mechanic",
+   "caption": "kneeling mechanic",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "tinker_t2": {
+  "name": "Tinker T2 Powder Gunsmith",
+  "role": "",
+  "source": {
+   "row_id": 469491,
+   "subject": "gunslinger",
+   "caption": "quick-drawing gunslinger with a low-slung holster in muted colors",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "tinker_t3": {
+  "name": "Tinker T3 Engine Marshal",
+  "role": "",
+  "source": {
+   "row_id": 468801,
+   "subject": "space engineer",
+   "caption": "top-down hunched space engineer with a scanner",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "ranger_t1": {
+  "name": "Ranger T1 Wayfinder",
+  "role": "",
+  "source": {
+   "row_id": 443165,
+   "subject": "ranger",
+   "caption": "watchful ranger with a longbow on the back",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "ranger_t2": {
+  "name": "Ranger T2 Thornwatch",
+  "role": "",
+  "source": {
+   "row_id": 448118,
+   "subject": "ranger",
+   "caption": "ranger with twin short swords in muted colors",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "ranger_t3": {
+  "name": "Ranger T3 Greenveil Hunter",
+  "role": "",
+  "source": {
+   "row_id": 447469,
+   "subject": "hooded archer",
+   "caption": "hooded archer with a quiver of many arrows in flat colors",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "npc_aldric": {
+  "name": "Sir Aldric Thorne",
+  "role": "Mentor, last Lampwarden",
+  "source": {
+   "row_id": 450694,
+   "subject": "greatsword knight",
+   "caption": "front-view towering greatsword knight with a round shield",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "npc_pip": {
+  "name": "Pip",
+  "role": "Companion automaton with a lost memory core",
+  "source": {
+   "row_id": 36302,
+   "subject": "robot companion",
+   "caption": "high-tech robot companion",
+   "shard": "train-0000.parquet"
+  },
+  "composite": false
+ },
+ "npc_wren": {
+  "name": "Wren Ashby",
+  "role": "Orphan apprentice who grows into the town crafter",
+  "source": {
+   "row_id": 446561,
+   "subject": "girl",
+   "caption": "waving girl with a teddy bear",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "npc_hester": {
+  "name": "Hester Brann",
+  "role": "Forge-mother, crafting and enhancement",
+  "source": {
+   "row_id": 437594,
+   "subject": "old woman",
+   "caption": "front-view knitting old woman with a backpack",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "npc_odo": {
+  "name": "Odo Fenn",
+  "role": "Traveling merchant, mission board",
+  "source": {
+   "row_id": 438608,
+   "subject": "merchant",
+   "caption": "top-down bowing merchant with spectacles",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "npc_caldus": {
+  "name": "Caldus Thorne",
+  "role": "Aldric's brother, the Archwright, sympathetic antagonist",
+  "source": {
+   "row_id": 437059,
+   "subject": "archmage",
+   "caption": "front-view bearded archmage with wide flowing sleeves",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "en_cogling": {
+  "name": "Cogling",
+  "role": "Rogue Automatons, swarm fodder",
+  "source": {
+   "row_id": 457772,
+   "subject": "clockwork automaton",
+   "caption": "side-view bowing orange clockwork automaton with a chest panel",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "en_scrapjaw": {
+  "name": "Scrapjaw Golem",
+  "role": "Rogue Automatons, slow tank",
+  "source": {
+   "row_id": 443845,
+   "subject": "scrap golem",
+   "caption": "lopsided scrap golem with a cracked lens eye",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "en_turret": {
+  "name": "Lumen Turret",
+  "role": "Rogue Automatons, stationary laser",
+  "source": {
+   "row_id": 444715,
+   "subject": "laser turret",
+   "caption": "rotating laser turret in bright colors",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "en_tusk": {
+  "name": "Bramble Tusk",
+  "role": "Bloomtouched Beasts, charger",
+  "source": {
+   "row_id": 27794,
+   "subject": "wild boar",
+   "caption": "chubby wild boar with a flower on its head",
+   "shard": "train-0000.parquet"
+  },
+  "composite": false
+ },
+ "en_fang": {
+  "name": "Bloomfang Wolf",
+  "role": "Bloomtouched Beasts, pack hunter",
+  "source": {
+   "row_id": 22859,
+   "subject": "wolf",
+   "caption": "tiny wolf with a flower on its head",
+   "shard": "train-0000.parquet"
+  },
+  "composite": false
+ },
+ "en_mossback": {
+  "name": "Mossback",
+  "role": "Bloomtouched Beasts, cave brute",
+  "source": {
+   "row_id": 436223,
+   "subject": "moss golem",
+   "caption": "moss golem with flowers on its shoulders in warm colors",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "en_cutpurse": {
+  "name": "Crowfeather Cutpurse",
+  "role": "Crowfeather Bandits, fast melee",
+  "source": {
+   "row_id": 437545,
+   "subject": "highwayman",
+   "caption": "bowing highwayman with a tricorn hat",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "en_gunner": {
+  "name": "Crowfeather Gunner",
+  "role": "Crowfeather Bandits, ranged flintlock",
+  "source": {
+   "row_id": 470665,
+   "subject": "highwayman",
+   "caption": "pointing highwayman with a flintlock pistol",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "en_choir": {
+  "name": "Iron Choir Paladin",
+  "role": "Iron Choir order, shielded elite",
+  "source": {
+   "row_id": 427552,
+   "subject": "robot knight",
+   "caption": "sword-raised robot knight in bright colors",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
+ "en_geode": {
+  "name": "Geode Warden",
+  "role": "Cave guardian, dungeon boss",
+  "source": {
+   "row_id": 17934,
+   "subject": "crystal golem",
+   "caption": "cute crystal golem with sparkles",
+   "shard": "train-0000.parquet"
+  },
+  "composite": false
+ },
+ "knight_t4": {
+  "name": "Knight T4 Ascended",
+  "role": "Ascension tier look (tier 4 and up)",
+  "source": {
+   "row_id": 448326,
+   "subject": "royal knight",
+   "caption": "side-view royal knight with fluted armor",
+   "shard": "train-0004.parquet"
+  },
+  "composite": true,
+  "how": "Recolor of knight_t3: red/orange hues rotated toward cyan, plus 1 px cyan tier aura. Snapped with fast-pixelizer."
+ },
+ "arcanist_t4": {
+  "name": "Arcanist T4 Ascended",
+  "role": "Ascension tier look (tier 4 and up)",
+  "source": {
+   "row_id": 448023,
+   "subject": "archmage",
+   "caption": "side-facing blue archmage with a tall crown-like hat",
+   "shard": "train-0004.parquet"
+  },
+  "composite": true,
+  "how": "Recolor of arcanist_t3: red/orange hues rotated toward cyan, plus 1 px cyan tier aura. Snapped with fast-pixelizer."
+ },
+ "tinker_t4": {
+  "name": "Tinker T4 Ascended",
+  "role": "Ascension tier look (tier 4 and up)",
+  "source": {
+   "row_id": 468801,
+   "subject": "space engineer",
+   "caption": "top-down hunched space engineer with a scanner",
+   "shard": "train-0004.parquet"
+  },
+  "composite": true,
+  "how": "Recolor of tinker_t3: red/orange hues rotated toward cyan, plus 1 px cyan tier aura. Snapped with fast-pixelizer."
+ },
+ "ranger_t4": {
+  "name": "Ranger T4 Ascended",
+  "role": "Ascension tier look (tier 4 and up)",
+  "source": {
+   "row_id": 447469,
+   "subject": "hooded archer",
+   "caption": "hooded archer with a quiver of many arrows in flat colors",
+   "shard": "train-0004.parquet"
+  },
+  "composite": true,
+  "how": "Recolor of ranger_t3: red/orange hues rotated toward cyan, plus 1 px cyan tier aura. Snapped with fast-pixelizer."
+ },
+ "en_cogling_elite": {
+  "name": "Cogling, Ring 4 Elite",
+  "role": "Same enemy, further out: recolor + aura",
+  "source": {
+   "row_id": 457772,
+   "subject": "clockwork automaton",
+   "caption": "side-view bowing orange clockwork automaton with a chest panel",
+   "shard": "train-0004.parquet"
+  },
+  "composite": true,
+  "how": "Hue rotate of en_cogling to violet, plus 1 px violet elite aura. Snapped with fast-pixelizer."
+ },
+ "npc_pip_awake": {
+  "name": "Pip, Awakened (Act 3)",
+  "role": "Pip after the Heart Engine memory returns",
+  "source": {
+   "row_id": 36302,
+   "subject": "robot companion",
+   "caption": "high-tech robot companion",
+   "shard": "train-0000.parquet"
+  },
+  "composite": true,
+  "how": "Blue accents rotated to gold, plus 1 px gold aura. Snapped with fast-pixelizer."
+ }
+}

@@ -1,0 +1,58 @@
+{
+  "file": "figcraft/fervois.figcraft",
+  "tool": "FigCraft (storytold/figcraft, figcraft-cli)",
+  "regenerate": "python3 figcraft/generate_design.py && figcraft-cli run figcraft/build/script.json",
+  "export": "figcraft-cli export figcraft/fervois.figcraft -o figcraft/exports/ --scale 1 --page \"<Page>\"",
+  "frames": [
+    {
+      "page": "Cover",
+      "frame": "Cover",
+      "nodeId": 2,
+      "size": [
+        1440.0,
+        900.0
+      ],
+      "png": "figcraft/exports/cover.png"
+    },
+    {
+      "page": "Character Sheet",
+      "frame": "Character Sheet",
+      "nodeId": 10,
+      "size": [
+        1600.0,
+        2300.0
+      ],
+      "png": "figcraft/exports/character-sheet.png"
+    },
+    {
+      "page": "Style Guide",
+      "frame": "Style Guide",
+      "nodeId": 205,
+      "size": [
+        1800.0,
+        1500.0
+      ],
+      "png": "figcraft/exports/style-guide.png"
+    },
+    {
+      "page": "FX",
+      "frame": "FX Samples",
+      "nodeId": 286,
+      "size": [
+        1800.0,
+        980.0
+      ],
+      "png": "figcraft/exports/fx-samples.png"
+    },
+    {
+      "page": "World Buildings",
+      "frame": "World Buildings",
+      "nodeId": 300,
+      "size": [
+        1800.0,
+        620.0
+      ],
+      "png": "figcraft/exports/world-buildings.png"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "fervois-art-tools",
+  "private": true,
+  "type": "module",
+  "description": "Art pipeline helpers only (no game code).",
+  "scripts": {
+    "snap": "node snap.mjs",
+    "fx": "node fx/render_fx.mjs"
+  },
+  "dependencies": {
+    "fast-pixelizer": "^1.3.10",
+    "pngjs": "^7.0.0"
+  }
+}

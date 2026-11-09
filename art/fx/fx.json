@@ -1,0 +1,57 @@
+[
+ {
+  "id": "projectiles/laser-bolt",
+  "label": "Laser bolt (Tinker rifles, Lumen Turret)",
+  "file": "projectiles--laser-bolt.png",
+  "frameSize": [
+   128,
+   32
+  ],
+  "frames": 6,
+  "duration": 0.5
+ },
+ {
+  "id": "melee/sword-slash",
+  "label": "Sword slash (Knight)",
+  "file": "melee--sword-slash.png",
+  "frameSize": [
+   136,
+   104
+  ],
+  "frames": 6,
+  "duration": 0.75
+ },
+ {
+  "id": "impacts/shield-block",
+  "label": "Shield block (Knight Bulwark)",
+  "file": "impacts--shield-block.png",
+  "frameSize": [
+   148,
+   104
+  ],
+  "frames": 6,
+  "duration": 1.1
+ },
+ {
+  "id": "spawn/disintegrate",
+  "label": "Disintegrate (enemy defeat, no blood)",
+  "file": "spawn--disintegrate.png",
+  "frameSize": [
+   176,
+   100
+  ],
+  "frames": 6,
+  "duration": 3.4
+ },
+ {
+  "id": "spawn/coin-drop",
+  "label": "Coin drop (loot burst)",
+  "file": "spawn--coin-drop.png",
+  "frameSize": [
+   160,
+   88
+  ],
+  "frames": 6,
+  "duration": 3
+ }
+]

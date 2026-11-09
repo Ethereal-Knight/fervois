@@ -1,0 +1,68 @@
+{
+ "arcanist_t4": {
+  "clean8x": [
+   16,
+   16
+  ],
+  "soft8x": [
+   128,
+   128
+  ],
+  "preservedSourceColors": true
+ },
+ "en_cogling_elite": {
+  "clean8x": [
+   16,
+   16
+  ],
+  "soft8x": [
+   128,
+   128
+  ],
+  "preservedSourceColors": true
+ },
+ "knight_t4": {
+  "clean8x": [
+   16,
+   16
+  ],
+  "soft8x": [
+   128,
+   128
+  ],
+  "preservedSourceColors": true
+ },
+ "npc_pip_awake": {
+  "clean8x": [
+   16,
+   16
+  ],
+  "soft8x": [
+   128,
+   128
+  ],
+  "preservedSourceColors": true
+ },
+ "ranger_t4": {
+  "clean8x": [
+   16,
+   16
+  ],
+  "soft8x": [
+   128,
+   128
+  ],
+  "preservedSourceColors": true
+ },
+ "tinker_t4": {
+  "clean8x": [
+   16,
+   16
+  ],
+  "soft8x": [
+   128,
+   128
+  ],
+  "preservedSourceColors": true
+ }
+}
