@@ -1,7 +1,7 @@
 # World generation
 
 ## Units
-- Tile: 16 x 16 px. Region: 256 x 256 tiles (4096 x 4096 px). Render chunk: 32 x 32 tiles (64 per region) for culling and simulation.
+- Tile: 32 x 32 px (characters are 64 x 64, two tiles tall). Region: 256 x 256 tiles (8192 x 8192 px). Render chunk: 32 x 32 tiles (1024 x 1024 px, 64 per region) for culling and simulation.
 - Region grid: integer coords `(rx, ry)`, Hollowmere at `(0, 0)`. Distance `d = max(|rx|, |ry|)` (rings are squares).
 - Region level: `round(10 * d^1.15) + rand(-2, 2)`, clamped to at least 1. d=1: 10, d=2: 22, d=3: 35, d=5: 64, d=7: 94, d=10: 141, d=20: 313.
 

@@ -1,0 +1,497 @@
+{
+ "anchors": {
+  "head": [
+   32,
+   19
+  ],
+  "neck": [
+   32,
+   30
+  ],
+  "chest": [
+   32,
+   37
+  ],
+  "hip": [
+   32,
+   46
+  ],
+  "feet_y": 60,
+  "hand_main": {
+   "down": [
+    19,
+    45
+   ],
+   "up": [
+    45,
+    45
+   ],
+   "left": [
+    27,
+    44
+   ]
+  },
+  "hand_off": {
+   "down": [
+    45,
+    45
+   ],
+   "up": [
+    19,
+    45
+   ],
+   "left": [
+    37,
+    43
+   ]
+  }
+ },
+ "order": {
+  "down": [
+   "back",
+   "body",
+   "hair",
+   "legs",
+   "feet",
+   "chest",
+   "hands",
+   "head",
+   "off",
+   "main"
+  ],
+  "up": [
+   "main",
+   "off",
+   "body",
+   "hair",
+   "legs",
+   "feet",
+   "chest",
+   "hands",
+   "head",
+   "back"
+  ],
+  "left": [
+   "off",
+   "back",
+   "body",
+   "hair",
+   "legs",
+   "feet",
+   "chest",
+   "hands",
+   "head",
+   "main"
+  ]
+ },
+ "layers": [
+  "head/helm_down.png",
+  "head/helm_plain_down.png",
+  "head/hood_down.png",
+  "head/wizard_hat_down.png",
+  "head/goggles_down.png",
+  "chest/plate_down.png",
+  "chest/robe_down.png",
+  "chest/vest_down.png",
+  "chest/coat_down.png",
+  "legs/greaves_down.png",
+  "legs/trousers_down.png",
+  "feet/sabatons_down.png",
+  "feet/boots_down.png",
+  "hands/gauntlets_down.png",
+  "hands/gloves_down.png",
+  "back/cape_down.png",
+  "main/sword_down.png",
+  "main/lumen_blade_down.png",
+  "main/staff_down.png",
+  "main/pistol_down.png",
+  "main/bow_down.png",
+  "off/shield_down.png",
+  "off/tome_down.png",
+  "off/lantern_down.png",
+  "head/helm_up.png",
+  "head/helm_plain_up.png",
+  "head/hood_up.png",
+  "head/wizard_hat_up.png",
+  "head/goggles_up.png",
+  "chest/plate_up.png",
+  "chest/robe_up.png",
+  "chest/vest_up.png",
+  "chest/coat_up.png",
+  "legs/greaves_up.png",
+  "legs/trousers_up.png",
+  "feet/sabatons_up.png",
+  "feet/boots_up.png",
+  "hands/gauntlets_up.png",
+  "hands/gloves_up.png",
+  "back/cape_up.png",
+  "main/sword_up.png",
+  "main/lumen_blade_up.png",
+  "main/staff_up.png",
+  "main/pistol_up.png",
+  "main/bow_up.png",
+  "off/shield_up.png",
+  "off/tome_up.png",
+  "off/lantern_up.png",
+  "head/helm_left.png",
+  "head/helm_plain_left.png",
+  "head/hood_left.png",
+  "head/wizard_hat_left.png",
+  "head/goggles_left.png",
+  "chest/plate_left.png",
+  "chest/robe_left.png",
+  "chest/vest_left.png",
+  "chest/coat_left.png",
+  "legs/greaves_left.png",
+  "legs/trousers_left.png",
+  "feet/sabatons_left.png",
+  "feet/boots_left.png",
+  "hands/gauntlets_left.png",
+  "hands/gloves_left.png",
+  "back/cape_left.png",
+  "main/sword_left.png",
+  "main/lumen_blade_left.png",
+  "main/staff_left.png",
+  "main/pistol_left.png",
+  "main/bow_left.png",
+  "off/shield_left.png",
+  "off/tome_left.png",
+  "off/lantern_left.png",
+  "head/helm_right.png",
+  "head/helm_plain_right.png",
+  "head/hood_right.png",
+  "head/wizard_hat_right.png",
+  "head/goggles_right.png",
+  "chest/plate_right.png",
+  "chest/robe_right.png",
+  "chest/vest_right.png",
+  "chest/coat_right.png",
+  "legs/greaves_right.png",
+  "legs/trousers_right.png",
+  "feet/sabatons_right.png",
+  "feet/boots_right.png",
+  "hands/gauntlets_right.png",
+  "hands/gloves_right.png",
+  "back/cape_right.png",
+  "main/sword_right.png",
+  "main/lumen_blade_right.png",
+  "main/staff_right.png",
+  "main/pistol_right.png",
+  "main/bow_right.png",
+  "off/shield_right.png",
+  "off/tome_right.png",
+  "off/lantern_right.png"
+ ],
+ "tiers": {
+  "knight": [
+   {
+    "tier": 1,
+    "name": "Squire",
+    "loadout": {
+     "hair": "short",
+     "chest": "vest",
+     "legs": "trousers",
+     "feet": "boots",
+     "main": "sword",
+     "head": "helm_plain"
+    },
+    "aura": null,
+    "ref16": "knight_t1"
+   },
+   {
+    "tier": 2,
+    "name": "Warden",
+    "loadout": {
+     "chest": "plate",
+     "legs": "greaves",
+     "feet": "sabatons",
+     "hands": "gauntlets",
+     "main": "sword",
+     "off": "shield",
+     "head": "helm_plain"
+    },
+    "aura": null,
+    "ref16": "knight_t2"
+   },
+   {
+    "tier": 3,
+    "name": "Lumen Paladin",
+    "loadout": {
+     "chest": "plate",
+     "legs": "greaves",
+     "feet": "sabatons",
+     "hands": "gauntlets",
+     "main": "sword",
+     "off": "shield",
+     "head": "helm",
+     "back": "cape"
+    },
+    "aura": null,
+    "ref16": "knight_t3"
+   },
+   {
+    "tier": 4,
+    "name": "Ascended",
+    "loadout": {
+     "chest": "plate",
+     "legs": "greaves",
+     "feet": "sabatons",
+     "hands": "gauntlets",
+     "main": "lumen_blade",
+     "off": "shield",
+     "head": "helm",
+     "back": "cape"
+    },
+    "aura": "#40E8FF",
+    "ref16": "knight_t4"
+   }
+  ],
+  "arcanist": [
+   {
+    "tier": 1,
+    "name": "Hedge Caster",
+    "loadout": {
+     "hair": "long",
+     "chest": "robe",
+     "feet": "boots",
+     "main": "staff"
+    },
+    "aura": null,
+    "ref16": "arcanist_t1"
+   },
+   {
+    "tier": 2,
+    "name": "Stormwright",
+    "loadout": {
+     "hair": "long",
+     "chest": "robe",
+     "feet": "boots",
+     "main": "staff",
+     "off": "tome",
+     "hands": "gloves"
+    },
+    "aura": null,
+    "ref16": "arcanist_t2"
+   },
+   {
+    "tier": 3,
+    "name": "Starloom Magus",
+    "loadout": {
+     "hair": "long",
+     "chest": "robe",
+     "feet": "boots",
+     "main": "staff",
+     "off": "tome",
+     "head": "wizard_hat",
+     "back": "cape"
+    },
+    "aura": null,
+    "ref16": "arcanist_t3"
+   },
+   {
+    "tier": 4,
+    "name": "Ascended",
+    "loadout": {
+     "hair": "long",
+     "chest": "robe",
+     "feet": "boots",
+     "main": "staff",
+     "off": "tome",
+     "head": "wizard_hat",
+     "back": "cape"
+    },
+    "aura": "#40E8FF",
+    "ref16": "arcanist_t4"
+   }
+  ],
+  "tinker": [
+   {
+    "tier": 1,
+    "name": "Scrap Apprentice",
+    "loadout": {
+     "hair": "short",
+     "chest": "vest",
+     "legs": "trousers",
+     "feet": "boots",
+     "main": "pistol"
+    },
+    "aura": null,
+    "ref16": "tinker_t1"
+   },
+   {
+    "tier": 2,
+    "name": "Powder Gunsmith",
+    "loadout": {
+     "hair": "short",
+     "chest": "coat",
+     "legs": "trousers",
+     "feet": "boots",
+     "main": "pistol",
+     "hands": "gloves",
+     "head": "goggles"
+    },
+    "aura": null,
+    "ref16": "tinker_t2"
+   },
+   {
+    "tier": 3,
+    "name": "Engine Marshal",
+    "loadout": {
+     "chest": "plate",
+     "legs": "greaves",
+     "feet": "sabatons",
+     "hands": "gauntlets",
+     "main": "pistol",
+     "off": "lantern",
+     "head": "goggles",
+     "hair": "short"
+    },
+    "aura": null,
+    "ref16": "tinker_t3"
+   },
+   {
+    "tier": 4,
+    "name": "Ascended",
+    "loadout": {
+     "chest": "plate",
+     "legs": "greaves",
+     "feet": "sabatons",
+     "hands": "gauntlets",
+     "main": "pistol",
+     "off": "lantern",
+     "head": "goggles",
+     "hair": "short",
+     "back": "cape"
+    },
+    "aura": "#40E8FF",
+    "ref16": "tinker_t4"
+   }
+  ],
+  "ranger": [
+   {
+    "tier": 1,
+    "name": "Wayfinder",
+    "loadout": {
+     "hair": "short",
+     "chest": "vest",
+     "legs": "trousers",
+     "feet": "boots",
+     "main": "bow"
+    },
+    "aura": null,
+    "ref16": "ranger_t1"
+   },
+   {
+    "tier": 2,
+    "name": "Thornwatch",
+    "loadout": {
+     "hair": "short",
+     "chest": "vest",
+     "legs": "trousers",
+     "feet": "boots",
+     "main": "bow",
+     "hands": "gloves",
+     "head": "hood"
+    },
+    "aura": null,
+    "ref16": "ranger_t2"
+   },
+   {
+    "tier": 3,
+    "name": "Greenveil Hunter",
+    "loadout": {
+     "chest": "coat",
+     "legs": "trousers",
+     "feet": "boots",
+     "main": "bow",
+     "hands": "gloves",
+     "head": "hood",
+     "back": "cape"
+    },
+    "aura": null,
+    "ref16": "ranger_t3"
+   },
+   {
+    "tier": 4,
+    "name": "Ascended",
+    "loadout": {
+     "chest": "coat",
+     "legs": "trousers",
+     "feet": "boots",
+     "main": "bow",
+     "hands": "gloves",
+     "head": "hood",
+     "back": "cape"
+    },
+    "aura": "#40E8FF",
+    "ref16": "ranger_t4"
+   }
+  ]
+ },
+ "combos": [
+  {
+   "name": "base",
+   "loadout": {
+    "hair": "short"
+   }
+  },
+  {
+   "name": "mix_plate_hood_bow",
+   "loadout": {
+    "chest": "plate",
+    "legs": "greaves",
+    "feet": "boots",
+    "head": "hood",
+    "main": "bow"
+   }
+  },
+  {
+   "name": "mix_robe_shield_sword",
+   "loadout": {
+    "hair": "long",
+    "chest": "robe",
+    "feet": "boots",
+    "main": "sword",
+    "off": "shield"
+   }
+  },
+  {
+   "name": "mix_coat_goggles_staff",
+   "loadout": {
+    "hair": "short",
+    "chest": "coat",
+    "legs": "trousers",
+    "feet": "sabatons",
+    "head": "goggles",
+    "main": "staff",
+    "off": "lantern"
+   }
+  },
+  {
+   "name": "recolor_knight_t3_moss",
+   "loadout": {
+    "chest": "plate",
+    "legs": "greaves",
+    "feet": "sabatons",
+    "hands": "gauntlets",
+    "main": "sword",
+    "off": "shield",
+    "head": "helm",
+    "back": "cape"
+   }
+  },
+  {
+   "name": "recolor_knight_t3_crimson",
+   "loadout": {
+    "chest": "plate",
+    "legs": "greaves",
+    "feet": "sabatons",
+    "hands": "gauntlets",
+    "main": "sword",
+    "off": "shield",
+    "head": "helm",
+    "back": "cape"
+   }
+  }
+ ]
+}

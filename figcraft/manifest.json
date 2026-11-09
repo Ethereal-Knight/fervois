@@ -19,25 +19,35 @@
       "frame": "Character Sheet",
       "nodeId": 10,
       "size": [
-        1600.0,
-        2300.0
+        2000.0,
+        2840.0
       ],
       "png": "figcraft/exports/character-sheet.png"
     },
     {
       "page": "Style Guide",
       "frame": "Style Guide",
-      "nodeId": 205,
+      "nodeId": 242,
       "size": [
         1800.0,
-        1500.0
+        1440.0
       ],
       "png": "figcraft/exports/style-guide.png"
     },
     {
+      "page": "Paper doll",
+      "frame": "Paper doll",
+      "nodeId": 328,
+      "size": [
+        2000.0,
+        2060.0
+      ],
+      "png": "figcraft/exports/paper-doll.png"
+    },
+    {
       "page": "FX",
       "frame": "FX Samples",
-      "nodeId": 286,
+      "nodeId": 445,
       "size": [
         1800.0,
         980.0
@@ -47,7 +57,7 @@
     {
       "page": "World Buildings",
       "frame": "World Buildings",
-      "nodeId": 300,
+      "nodeId": 459,
       "size": [
         1800.0,
         620.0

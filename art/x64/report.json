@@ -1,0 +1,254 @@
+{
+ "arcanist_t1": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 146
+ },
+ "arcanist_t2": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 205
+ },
+ "arcanist_t3": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 100
+ },
+ "arcanist_t4": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 89
+ },
+ "en_choir": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 238
+ },
+ "en_cogling": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 90
+ },
+ "en_cogling_elite": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 82
+ },
+ "en_cutpurse": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 123
+ },
+ "en_fang": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 150
+ },
+ "en_geode": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 227
+ },
+ "en_gunner": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 156
+ },
+ "en_mossback": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 167
+ },
+ "en_scrapjaw": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 158
+ },
+ "en_turret": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 195
+ },
+ "en_tusk": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 115
+ },
+ "hero_base": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 250
+ },
+ "knight_t1": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 166
+ },
+ "knight_t2": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 224
+ },
+ "knight_t3": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 194
+ },
+ "knight_t4": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 152
+ },
+ "npc_aldric": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 223
+ },
+ "npc_caldus": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 68
+ },
+ "npc_hester": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 200
+ },
+ "npc_liora": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 113
+ },
+ "npc_odo": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 122
+ },
+ "npc_pip": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 184
+ },
+ "npc_pip_awake": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 142
+ },
+ "npc_wren": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 121
+ },
+ "ranger_t1": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 175
+ },
+ "ranger_t2": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 238
+ },
+ "ranger_t3": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 191
+ },
+ "ranger_t4": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 145
+ },
+ "tinker_t1": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 186
+ },
+ "tinker_t2": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 154
+ },
+ "tinker_t3": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 219
+ },
+ "tinker_t4": {
+  "size": [
+   64,
+   64
+  ],
+  "colors": 168
+ }
+}

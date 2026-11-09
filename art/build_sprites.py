@@ -3,7 +3,7 @@
 Usage: python art/build_sprites.py <dir with train-000N.parquet shards>
 Only shards 0000-0005 are needed (about 170 MB); never download the full dataset.
 Shard URL: https://huggingface.co/datasets/Angais/pixel-art-atlas-1.4m/resolve/refs%2Fconvert%2Fparquet/default/train/000N.parquet
-Writes art/sprites/*.png (native 16x16), art/x8/*.png (8x nearest-neighbor), art/sprites.json.
+Writes art/originals-16/*.png (native 16x16), art/x8/*.png (8x nearest-neighbor), art/sprites.json.
 Composites are written as *_raw.png then snapped by art/snap.mjs (fast-pixelizer, the mono-pix engine).
 """
 import sys, glob, io, json, colorsys, os
@@ -37,7 +37,7 @@ missing = set(picks) - set(got)
 assert not missing, missing
 
 def save(pid, im):
-    im.save(f"{ROOT}/sprites/{pid}.png"); im.resize((128, 128), Image.NEAREST).save(f"{ROOT}/x8/{pid}.png")
+    im.save(f"{ROOT}/originals-16/{pid}.png"); im.resize((128, 128), Image.NEAREST).save(f"{ROOT}/x8/{pid}.png")
 
 def recolor(im, fn):
     out = im.copy(); px = out.load()

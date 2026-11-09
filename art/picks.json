@@ -17,6 +17,7 @@
  "npc_wren":         {"key":"girl#3",             "name":"Wren Ashby", "role":"Orphan apprentice who grows into the town crafter"},
  "npc_hester":       {"key":"old woman#2",        "name":"Hester Brann", "role":"Forge-mother, crafting and enhancement"},
  "npc_odo":          {"key":"merchant#1",         "name":"Odo Fenn", "role":"Traveling merchant, mission board"},
+ "npc_liora":        {"key":"robed healer woman#3","name":"Liora Thorne", "role":"Caldus's daughter, held in Lumen stasis inside the Heart Engine"},
  "npc_caldus":       {"key":"archmage#0",         "name":"Caldus Thorne", "role":"Aldric's brother, the Archwright, sympathetic antagonist"},
  "en_cogling":       {"key":"clockwork automaton#4","name":"Cogling", "role":"Rogue Automatons, swarm fodder"},
  "en_scrapjaw":      {"key":"scrap golem#2",      "name":"Scrapjaw Golem", "role":"Rogue Automatons, slow tank"},

@@ -146,7 +146,7 @@ Each enemy has a role (fodder, tank, ranged, charger, support, elite, boss), 1 t
 ## 10. Character creation and customization
 - Pick a body type, skin tone, hair style and color, eye color, voice (3 sets), and a starting trinket (story flavor, tiny bonus).
 - Pick a starting class (Knight, Arcanist, Tinker, Ranger). You can unlock a second class "Oath" at level 30 (open question Q5).
-- Gear changes the look (visible helm, chest, weapon, shield, back). Transmog at Hester's Forge for free once a look is found.
+- Gear changes the look: every equipped item is its own paper-doll layer (head, chest, legs, feet, hands, back, main hand, off hand), see [systems/paper-doll.md](systems/paper-doll.md). Transmog at Hester's Forge for free once a look is found.
 - Dye slots: two per armor piece, from the FerVois palette.
 
 ## 11. Stats and leveling
@@ -203,11 +203,12 @@ Framework: each region gets 1 handcrafted side quest when one fits, plus 2 to 4 
 - No em dashes in player-facing copy. Clean language. Short tooltips.
 
 ## 19. Art direction
-- **Base:** 16 x 16 sprites from the CC0 Pixel Art Atlas (1.4M captioned sprites), curated and recolored into the FerVois palette. 1 px dark outline, no anti-aliasing, integer scaling only. Game renders at 480 x 270 and scales 4x on 1080p.
-- **Hero:** open question Q4. The atlas has mostly single front or three-quarter frames, and Paginated Bear taught us the player needs four facing directions and more pixels (it used 28 x 32). Proposal: enemies and NPCs stay 16 x 16 atlas sprites (with simple 2-frame bob and squash), the hero is redrawn at 32 x 32 with down, up, left, right walk, idle and attack, using the atlas sprite as the design reference for each gear tier.
+- **Base:** characters are native **64 x 64**, world tiles are **32 x 32**. 1 px dark outline tinted toward the fill, 3 to 4 step ramps per material, light from the top left, no anti-aliasing, no blur, integer scaling only. The game renders at 960 x 540 and scales 2x on 1080p (4x on 4K). Bosses may use 96 x 96 or 128 x 128 on the same rules.
+- **NPCs and enemies:** whole 64 x 64 sprites derived from 16 x 16 CC0 Pixel Art Atlas originals by `art/upscale64.py` (Scale4x, outline rebuild, material shading; not a nearest-neighbor blow-up). The 16 x 16 originals stay in `art/originals-16/` for provenance. Animation: 2-frame bob and squash plus pixelfx acting, with hand-drawn frames for bosses.
+- **Hero (resolves Q4):** a 64 x 64 **layered paper doll**: base body plus separately drawn head, chest, legs, feet, hands, back, main-hand and off-hand layers on one shared grid and anchor set, so the hero visibly changes as gear is found and every combination animates in sync. Facings down, up, left (right mirrors left); idle, walk and attack in all four. Layers are material-index masks, so item variants, dyes and character-creation colors are palette swaps. In Phaser: a Container of synced layer sprites, or a RenderTexture bake on equip for performance. Spec: [systems/paper-doll.md](systems/paper-doll.md). Prior art: the LPC Universal Spritesheet Character Generator (system only, no LPC art used).
 - **Medieval + tech-pop rule:** base materials are steel, leather, cloth, wood, stone, brass. Tech accents are Archwright relics in Lumen Cyan (#40E8FF). One tech accent per sprite at most. Tech gets more common the further out you go (Ring 4+ vaults).
-- **Tiers:** T1 to T3 are distinct atlas sprites. T4+ "Ascended" keeps the T3 silhouette, rotates warm accents to cyan and adds a 1 px aura (see Character Sheet).
-- **Backgrounds:** subtle, low-contrast ground with a light white wash (2 to 4%) so small characters pop (Paginated Bear lesson). Title screen uses a large pixel portrait.
+- **Tiers:** class tier looks are paper-doll loadouts plus palettes (T1 to T3 add and upgrade layers). T4+ "Ascended" keeps the T3 loadout, swaps to the Ascended palette (frost steel, Lumen Cyan trim) and adds a 1 px cyan aura around the composite (see the Character Sheet and Paper doll pages).
+- **Backgrounds:** subtle, low-contrast ground with a light white wash (2 to 4%) so 64 px characters pop on 32 px tiles (Paginated Bear lesson). Title screen uses a large pixel portrait.
 - **Buildings:** towns, keeps, forges and tech outposts rendered with parametric-topdown-pixel-architecture as placeholders and layout studies (atlas licenses to clear before shipping).
 - **FX:** pixelfx effects (MIT) recolored to the palette: slash, shield block, laser bolt, muzzle flash, disintegrate, poof, coin drop, level up. No blood effects.
 
@@ -216,7 +217,8 @@ Full notes, licenses and how each one shapes FerVois: [references.md](references
 
 | Resource | License | Role in FerVois | Status |
 |---|---|---|---|
-| Pixel Art Atlas 1.4M | CC0 | Primary sprite source | Used (all character sheet sprites) |
+| Pixel Art Atlas 1.4M | CC0 | Source of NPC and enemy sprites (16 x 16 originals behind every 64 x 64), hero design references | Used (character sheet) |
+| LPC Universal Spritesheet Character Generator | CC-BY-SA / CC-BY / OGA-BY / GPL per asset | Prior art for the 64 x 64 layered paper doll | Referenced only, no LPC art or code used |
 | mono-pix / fast-pixelizer | MIT | Snap composites and AI sprites to a true grid | Used (all composites snapped) |
 | pixelfx | MIT | Combat, spell and defeat FX, sprite sheets | Used (FX page renders) |
 | Sprite Fusion pixel-art VFX | MIT | FX reference, MCP for agents | Referenced |
@@ -262,7 +264,9 @@ CI deploys every merge to main (Pages + Fabric), like the other games.
 ## 23. Risks
 | Risk | Why it matters | Mitigation |
 |---|---|---|
-| Atlas sprites are single frames | No walk cycles or 4 directions in the dataset | Redraw the hero at 32 x 32 (Q4); 2-frame bob for others; pixelfx acting for attacks |
+| Atlas sprites are single frames | No walk cycles or 4 directions in the dataset | Hero is a 64 x 64 paper doll drawn with 4 facings (Q4 resolved); 2-frame bob for NPCs and enemies; pixelfx acting for attacks |
+| Paper doll art volume | 10 slots x items x 12 animation rows | Shared grid and anchors, material-index layers so one drawing serves many variants, bake script mirrors right rows; start with the MVP class only |
+| Derived 64 x 64 detail | Procedural derivation adds shading and edges, not new features (faces stay simple) | Hand pass on the 10 most-seen NPC and enemy sprites before beta |
 | Atlas style varies | 1.4M sprites from many generators | Curate per faction, recolor to palette, snap composites with fast-pixelizer, style review page in FigCraft |
 | Procedural sameness | Generated regions blur together | Region cards, hand-made room library, 1 handcrafted site per region, strong landmarks |
 | Infinite-scaling balance | Power creep or a wall | Same exponential base for enemies and gear, rating-vs-level for percent stats, balance sheet tests to level 10,000 |
@@ -275,7 +279,7 @@ CI deploys every merge to main (Pages + Fabric), like the other games.
 1. **Q1 "Create the game as you move along":** procedural world (A), plus region cards where you pick what comes next (B), plus AI-written side quests later (C). Which mix did you mean?
 2. **Q2 Solo or co-op?** Co-op (2 to 4 players) is a big engine and server decision. Solo first, co-op later?
 3. **Q3 Platform:** desktop web first with gamepad, mobile later. OK, or must phones be day one?
-4. **Q4 Hero size:** keep 16 x 16 for everything, or redraw the hero at 32 x 32 with four directions (recommended)?
+4. **Q4 Hero size: resolved.** Mike asked for 64 x 64 characters and a hero that changes with gear. Decision: all characters 64 x 64; the hero is a layered paper doll ([systems/paper-doll.md](systems/paper-doll.md)); world tiles 32 x 32.
 5. **Q5 Multiclass:** one class per character, or unlock a second class "Oath" at level 30?
 6. **Q6 Prestige:** do you want Rekindle (reset rings for a permanent multiplier), or only endless Ascension?
 7. **Q7 Death penalty:** wake at the last waylamp with no loss (current), or drop some gold/materials you can recover?

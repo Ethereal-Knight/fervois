@@ -1,7 +1,7 @@
 // Clean composited/AI sprites onto a true pixel grid with fast-pixelizer (the engine behind mono-pix, MIT).
 // Usage: npm i fast-pixelizer pngjs && node art/snap.mjs
 // For each composites/*_raw.png: take the 8x export, run snap() with output 'resized', require a 16x16 result,
-// write sprites/<id>.png and x8/<id>.png. Also records how snap() does on a soft-edged copy.
+// write originals-16/<id>.png and x8/<id>.png. Also records how snap() does on a soft-edged copy.
 import fs from "node:fs"; import path from "node:path"; import { fileURLToPath } from "node:url";
 import { PNG } from "pngjs"; import { snap } from "fast-pixelizer";
 const root = path.dirname(fileURLToPath(import.meta.url));
@@ -41,7 +41,7 @@ for (const f of fs.readdirSync(path.join(root, "composites")).filter((n) => n.en
   const soft = snap(blurUp(src, 8), { colorVariety: 32, output: "resized" });
   report[id] = { clean8x: [r.width, r.height], soft8x: [soft.width, soft.height], preservedSourceColors: r.preservedSourceColors };
   if (r.width !== 16 || r.height !== 16) { console.error(id, "snapped to", r.width, r.height); process.exitCode = 1; continue; }
-  write(path.join(root, "sprites", id + ".png"), 16, 16, r.data);
+  write(path.join(root, "originals-16", id + ".png"), 16, 16, r.data);
   write(path.join(root, "x8", id + ".png"), 16, 16, r.data, 8);
 }
 fs.writeFileSync(path.join(root, "composites", "snap-report.json"), JSON.stringify(report, null, 1));

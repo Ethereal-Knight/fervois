@@ -197,6 +197,17 @@
   },
   "composite": false
  },
+ "npc_liora": {
+  "name": "Liora Thorne",
+  "role": "Caldus's daughter, held in Lumen stasis inside the Heart Engine",
+  "source": {
+   "row_id": 445851,
+   "subject": "robed healer woman",
+   "caption": "front-view side-facing robed healer woman with a flowing gown in flat colors",
+   "shard": "train-0004.parquet"
+  },
+  "composite": false
+ },
  "npc_caldus": {
   "name": "Caldus Thorne",
   "role": "Aldric's brother, the Archwright, sympathetic antagonist",
