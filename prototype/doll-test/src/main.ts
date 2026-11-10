@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { assetUrl } from './assets'
 import { readManifest } from './manifest'
 import { PlayScene } from './play'
 import './style.css'
@@ -37,7 +38,7 @@ window.addEventListener('keydown', (event) => {
 })
 
 async function main(): Promise<void> {
-  const response = await fetch('hero/manifest.json')
+  const response = await fetch(assetUrl('hero/manifest.json'))
   if (!response.ok) throw new Error('Could not load the paper doll manifest')
   const manifest = readManifest(await response.json())
   const game = new Phaser.Game({

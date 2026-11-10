@@ -32,6 +32,8 @@ npm run dev
 
 Walk with WASD or the arrow keys. Attack with Space, a click, or the Attack button. On a phone, drag the stick or tap the ground. The turntable checkbox shows the same loadout walking in four directions.
 
+Pushes to `main` publish this app with GitHub Pages (`.github/workflows/doll-test-pages.yml`). The project site is [https://ethereal-knight.github.io/fervois/](https://ethereal-knight.github.io/fervois/). The Pages build sets the Vite base to `/fervois/` so sheets and scripts load under that path. A local `npm run dev` keeps a relative base.
+
 To bake the sheets again (original code drawings, no outside art):
 
 ```bash

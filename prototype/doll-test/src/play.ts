@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { assetUrl } from './assets'
 import { bakeVariant, sourceKey, textureKey } from './bake'
 import { PaperDoll, loadoutFrom, type Facing, type Loadout } from './doll'
 import type { Manifest } from './manifest'
@@ -76,7 +77,7 @@ export class PlayScene extends Phaser.Scene {
 
   preload(): void {
     for (const sheet of this.manifest.sheets) {
-      this.load.image(sourceKey(sheet.slot, sheet.item), `hero/${sheet.file}`)
+      this.load.image(sourceKey(sheet.slot, sheet.item), assetUrl(`hero/${sheet.file}`))
     }
   }
 
