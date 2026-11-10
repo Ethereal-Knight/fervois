@@ -2,14 +2,14 @@
 
 The hero changes as gear is found. The hero sprite is not one drawing: it is a 64 x 64 base body plus separately drawn equipment layers, all on the same 64 x 64 frame grid and the same anchors, so any combination of items composites correctly and animates in sync. NPCs and enemies stay whole 64 x 64 sprites.
 
-Concept art for this lives on the FigCraft **Paper doll** page (`figcraft/exports/paper-doll.png`). The generator is `art/doll/doll.py`; outputs are in `art/doll/` (`layers/`, `tiers/`, `combos/`, `doll.json`).
+Concept art for this lives on the FigCraft **Paper doll** page (`figcraft/exports/paper-doll.png`). The generator is `art/doll/doll.py`; concept stills are in `art/doll/` (`layers/`, `tiers/`, `combos/`, `doll.json`). Full idle, walk, and attack sheets for the playable test are baked by `art/doll/sheets.py` into `art/doll/hero/`. Run that test from `prototype/doll-test` (see the README).
 
 ## 1. Layers
 
 | Order key | Slot | Concept items drawn so far | Notes |
 |---|---|---|---|
 | `body` | Base body | `base` | Skin, eyes, undershirt, foot wraps. Body type and skin tone are palette choices at character creation. |
-| `hair` | Hair | `short`, `long` | Hidden when the head item covers it (helm, hood). |
+| `hair` | Hair | `short`, `long` | Hidden when the head item covers it (helm, plain helm, hood, mail coif). |
 | `head` | Head | `helm`, `helm_plain`, `hood`, `wizard_hat`, `goggles` | |
 | `chest` | Chest | `plate`, `robe`, `vest`, `coat` | Includes sleeves and shoulder pieces. Long items (robe) cover the legs layer. |
 | `legs` | Legs | `greaves`, `trousers` | |
@@ -55,7 +55,7 @@ One PNG sheet per layer item, identical layout for every layer, 64 x 64 cells, 8
 - Unused cells stay transparent. Later animations (hurt, cast, dodge) append 4-row blocks below; old rows never move, so saved anim keys stay valid.
 - Weapon layers draw the swing arc in the attack rows; slash FX come from pixelfx on top.
 
-Status: the concept in `art/doll/` has the idle frame for down, up, left and right (mirrored). Walk and attack frames are authored in the prototype on this layout.
+Status: concept stills in `art/doll/layers/` are the idle frame only (down, up, left, and right mirrored). The playable test set in `art/doll/hero/` has full sheets for 24 gear items plus the body and short and long hair: idle (4 frames), walk (8), and attack (6), in all four directions. Right rows are mirrors of left. Every layer is drawn from one shared pose table, so mixed gear stays aligned. Up-facing attack frames 1 to 3 draw the weapon in front of the body; the cape stays on top. The test wardrobe is `cap`, `mail_coif`, `helm_plain`, `tunic`, `hauberk`, `plate`, `trousers`, `mail_chausses`, `greaves`, `boots`, `mail_boots`, `sabatons`, `hand_wraps`, `gloves`, `gauntlets`, `cloak`, `quiver`, `cape`, `sword`, `bow`, `pistol`, `shield`, `tome`, and `lantern`. `mail_coif` and `helm_plain` hide hair. The bow locks the off hand.
 
 ## 4. Draw order per facing
 
@@ -112,6 +112,8 @@ Tier looks are loadouts plus palettes (`TIERS` in `art/doll/doll.py`, mirrored i
 The 16 x 16 atlas sprite of each tier (`art/originals-16/`) is kept as the design reference for silhouette and color; the doll is original work drawn in code.
 
 ## 8. Phaser 4 implementation
+
+The playable test (`prototype/doll-test`) uses mode A below: one container, the body sprite drives `animationupdate`, and the other layers copy that frame. Palette variants are baked from the indexed sheets on equip.
 
 Two modes, same data.
 

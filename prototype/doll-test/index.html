@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FerVois paper doll test</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <div id="stage-wrap">
+        <div id="stage"></div>
+        <div id="pad" role="application" aria-label="Movement stick">
+          <div id="nub"></div>
+        </div>
+        <button id="attack" type="button">Attack</button>
+      </div>
+      <aside id="panel">
+        <h1>Paper doll</h1>
+        <p class="help">
+          Walk with WASD or the arrow keys. Attack with Space, a click, or the Attack button.
+          On a phone, drag the stick or tap the ground.
+        </p>
+        <p id="fps" aria-live="polite">FPS --</p>
+        <label class="row">
+          Palette
+          <select id="palette"></select>
+        </label>
+        <label class="check">
+          <input id="turntable" type="checkbox" />
+          Four direction turntable
+        </label>
+        <div id="presets" class="presets"></div>
+        <div id="slots"></div>
+        <p id="twohand" class="note" hidden>The bow uses both hands, so the off hand stays empty.</p>
+      </aside>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

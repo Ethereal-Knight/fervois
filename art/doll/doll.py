@@ -7,6 +7,9 @@ from the top left, and gives every layer its own 1 px tinted dark outline. Recol
 
 Views: down (front), up (back), left (side). right = mirror of left.
 Usage: python art/doll/doll.py  -> art/doll/layers/<slot>/<item>_<view>.png, art/doll/combos/*.png, art/doll/doll.json
+
+Full idle/walk/attack sheets (8 x 12) live in art/doll/sheets.py:
+    python art/doll/sheets.py
 """
 import os, json, colorsys
 from PIL import Image
@@ -239,6 +242,8 @@ ORDER = {
  "up":   ["main", "off", "body", "hair", "legs", "feet", "chest", "hands", "head", "back"],
  "left": ["off", "back", "body", "hair", "legs", "feet", "chest", "hands", "head", "main"],
 }
+# Head pieces that cover the hair layer. mail_coif matches the open-face rule used by the sheet baker.
+HIDES_HAIR = ("helm", "helm_plain", "hood", "mail_coif")
 
 # ---------------- palettes (tint masks: material -> base color)
 def H(c): return tuple(int(c[i:i + 2], 16) for i in (1, 3, 5))
@@ -300,7 +305,7 @@ def composite(loadout, palette, view="down", aura=None):
     for slot in order:
         if slot == "body": m = body("left" if view == "right" else view)
         elif slot == "hair":
-            if not loadout.get("hair") or loadout.get("head") in ("helm", "helm_plain", "hood"): continue
+            if not loadout.get("hair") or loadout.get("head") in HIDES_HAIR: continue
             m = hair("left" if view == "right" else view, loadout["hair"])
         else:
             it = loadout.get(slot)
@@ -323,7 +328,7 @@ def exploded(loadout, palette, view="down"):
     for slot in ORDER[v]:
         if slot == "body": m, it = body(v), "base"
         elif slot == "hair":
-            if not loadout.get("hair") or loadout.get("head") in ("helm", "helm_plain", "hood"): continue
+            if not loadout.get("hair") or loadout.get("head") in HIDES_HAIR: continue
             m, it = hair(v, loadout["hair"]), loadout["hair"]
         else:
             it = loadout.get(slot)
