@@ -23,20 +23,6 @@ function showError(error: unknown): void {
   if (stage) stage.textContent = message
 }
 
-window.addEventListener('keydown', (event) => {
-  const target = event.target
-  if (
-    target instanceof HTMLInputElement ||
-    target instanceof HTMLTextAreaElement ||
-    target instanceof HTMLSelectElement
-  ) {
-    return
-  }
-  if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === ' ') {
-    event.preventDefault()
-  }
-})
-
 async function main(): Promise<void> {
   const response = await fetch(assetUrl('hero/manifest.json'))
   if (!response.ok) throw new Error('Could not load the paper doll manifest')

@@ -237,10 +237,15 @@ ITEMS = {
  "off": {"shield": off_shield, "tome": off_tome, "lantern": off_lantern},
 }
 # draw order per view (first = bottom). Back faces flip cape and arms-side items.
+# Side views split the arms. Facing left, the character's left arm is `arm_near`
+# (off hand, drawn on top of the body) and the right arm is `arm_far` (main hand,
+# drawn under the body). Right-facing frames are mirrors, so the right arm is on top.
+# `sleeve_*` and `hand_*` follow the same arm. Front and back keep both arms in front
+# or behind with the weapons. Slots the concept generator does not draw are skipped.
 ORDER = {
- "down": ["back", "body", "hair", "legs", "feet", "chest", "hands", "head", "off", "main"],
- "up":   ["main", "off", "body", "hair", "legs", "feet", "chest", "hands", "head", "back"],
- "left": ["off", "back", "body", "hair", "legs", "feet", "chest", "hands", "head", "main"],
+ "down": ["back", "body", "hair", "legs", "feet", "chest", "arm_far", "sleeve_far", "hand_far", "arm_near", "sleeve_near", "hand_near", "head", "off", "main"],
+ "up": ["main", "hand_far", "sleeve_far", "arm_far", "off", "hand_near", "sleeve_near", "arm_near", "body", "hair", "legs", "feet", "chest", "head", "back"],
+ "left": ["back", "main", "hand_far", "sleeve_far", "arm_far", "body", "hair", "legs", "feet", "chest", "head", "arm_near", "sleeve_near", "hand_near", "off"],
 }
 # Head pieces that cover the hair layer. mail_coif matches the open-face rule used by the sheet baker.
 HIDES_HAIR = ("helm", "helm_plain", "hood", "mail_coif")
@@ -308,6 +313,7 @@ def composite(loadout, palette, view="down", aura=None):
             if not loadout.get("hair") or loadout.get("head") in HIDES_HAIR: continue
             m = hair("left" if view == "right" else view, loadout["hair"])
         else:
+            if slot not in ITEMS: continue
             it = loadout.get(slot)
             if not it: continue
             m = ITEMS[slot][it]("left" if view == "right" else view)
@@ -331,6 +337,7 @@ def exploded(loadout, palette, view="down"):
             if not loadout.get("hair") or loadout.get("head") in HIDES_HAIR: continue
             m, it = hair(v, loadout["hair"]), loadout["hair"]
         else:
+            if slot not in ITEMS: continue
             it = loadout.get(slot)
             if not it: continue
             m = ITEMS[slot][it](v)

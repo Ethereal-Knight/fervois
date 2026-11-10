@@ -8,16 +8,21 @@ Concept art for this lives on the FigCraft **Paper doll** page (`figcraft/export
 
 | Order key | Slot | Concept items drawn so far | Notes |
 |---|---|---|---|
-| `body` | Base body | `base` | Skin, eyes, undershirt, foot wraps. Body type and skin tone are palette choices at character creation. |
+| `body` | Base body | `base` | Skin, eyes, undershirt, foot wraps. Arms are not in this layer. |
+| `arm_far` | Far arm | `base` | Character's right arm (main hand). Under the torso in side view, shaded darker. |
+| `arm_near` | Near arm | `base` | Character's left arm (off hand). On top of the torso in side view. |
 | `hair` | Hair | `short`, `long` | Hidden when the head item covers it (helm, plain helm, hood, mail coif). |
 | `head` | Head | `helm`, `helm_plain`, `hood`, `wizard_hat`, `goggles` | |
-| `chest` | Chest | `plate`, `robe`, `vest`, `coat` | Includes sleeves and shoulder pieces. Long items (robe) cover the legs layer. |
+| `chest` | Chest | `plate`, `robe`, `vest`, `coat` | Torso only. Sleeves are `sleeve_far` and `sleeve_near`. |
+| `sleeve_far` | Far sleeve | same item as chest | Follows the right arm. |
+| `sleeve_near` | Near sleeve | same item as chest | Follows the left arm. |
 | `legs` | Legs | `greaves`, `trousers` | |
 | `feet` | Feet | `sabatons`, `boots` | |
-| `hands` | Hands | `gauntlets`, `gloves` | |
+| `hand_far` | Far hand | `gauntlets`, `gloves` | Right-hand half of the hands item. |
+| `hand_near` | Near hand | `gauntlets`, `gloves` | Left-hand half of the hands item. |
 | `back` | Back / cape | `cape` | Behind the body facing down and sideways, on top facing up. |
-| `main` | Main hand | `sword`, `lumen_blade`, `staff`, `pistol`, `bow` | Grip sits on the main-hand anchor. |
-| `off` | Off hand | `shield`, `tome`, `lantern` | Grip sits on the off-hand anchor. |
+| `main` | Main hand | `sword`, `lumen_blade`, `staff`, `pistol`, `bow` | Drawn at the far arm's depth. Grip is the main-hand anchor. |
+| `off` | Off hand | `shield`, `tome`, `lantern` | Drawn at the near arm's depth. Grip is the off-hand anchor. |
 
 Eight equipment slots (head, chest, legs, feet, hands, back, main hand, off hand) plus body and hair. Two-handed weapons fill `main` and lock `off`.
 
@@ -55,7 +60,7 @@ One PNG sheet per layer item, identical layout for every layer, 64 x 64 cells, 8
 - Unused cells stay transparent. Later animations (hurt, cast, dodge) append 4-row blocks below; old rows never move, so saved anim keys stay valid.
 - Weapon layers draw the swing arc in the attack rows; slash FX come from pixelfx on top.
 
-Status: concept stills in `art/doll/layers/` are the idle frame only (down, up, left, and right mirrored). The playable test set in `art/doll/hero/` has full sheets for 24 gear items plus the body and short and long hair: idle (4 frames), walk (8), and attack (6), in all four directions. Right rows are mirrors of left. Every layer is drawn from one shared pose table, so mixed gear stays aligned. Up-facing attack frames 1 to 3 draw the weapon in front of the body; the cape stays on top. The test wardrobe is `cap`, `mail_coif`, `helm_plain`, `tunic`, `hauberk`, `plate`, `trousers`, `mail_chausses`, `greaves`, `boots`, `mail_boots`, `sabatons`, `hand_wraps`, `gloves`, `gauntlets`, `cloak`, `quiver`, `cape`, `sword`, `bow`, `pistol`, `shield`, `tome`, and `lantern`. `mail_coif` and `helm_plain` hide hair. The bow locks the off hand.
+Status: concept stills in `art/doll/layers/` are the idle frame only (down, up, left, and right mirrored). The playable test set in `art/doll/hero/` has full sheets for 24 gear items plus the body, both arms, and short and long hair: idle (4 frames), walk (8), and attack (6), in all four directions. Right rows are mirrors of left. Every layer is drawn from one shared pose table, so mixed gear stays aligned. In side view the arms are separate layers and swing in opposite phase. The right arm is the main hand and sits under the torso when facing left. The left arm is the off hand and sits on top. Up-facing attack frames 1 to 3 draw the weapon in front of the body. The cape stays on top. The test wardrobe is `cap`, `mail_coif`, `helm_plain`, `tunic`, `hauberk`, `plate`, `trousers`, `mail_chausses`, `greaves`, `boots`, `mail_boots`, `sabatons`, `hand_wraps`, `gloves`, `gauntlets`, `cloak`, `quiver`, `cape`, `sword`, `bow`, `pistol`, `shield`, `tome`, and `lantern`. `mail_coif` and `helm_plain` hide hair. The bow locks the off hand.
 
 ## 4. Draw order per facing
 
@@ -63,10 +68,10 @@ First entry is drawn first (bottom).
 
 | Facing | Order (bottom to top) | Why |
 |---|---|---|
-| down | back, body, hair, legs, feet, chest, hands, head, off, main | Cape behind, both hands and weapons in front. |
-| up | main, off, body, hair, legs, feet, chest, hands, head, back | You see the back: weapons are behind the body, cape covers it. |
-| left | off, back, body, hair, legs, feet, chest, hands, head, main | Far arm (shield) behind the body, near arm (weapon) in front. |
-| right | same as left, frames mirrored | Uses the right rows of each sheet. |
+| down | back, body, hair, legs, feet, chest, arm_far, sleeve_far, hand_far, arm_near, sleeve_near, hand_near, head, off, main | Cape behind. Both arms, then both weapons, in front. |
+| up | main, hand_far, sleeve_far, arm_far, off, hand_near, sleeve_near, arm_near, body, hair, legs, feet, chest, head, back | You see the back: both arms and weapons are behind the body, cape covers it. |
+| left | back, main, hand_far, sleeve_far, arm_far, body, hair, legs, feet, chest, head, arm_near, sleeve_near, hand_near, off | Facing left, the right arm (main hand) is farther and draws under the torso. The left arm (off hand) draws on top. |
+| right | same as left, frames mirrored | The mirror puts the right arm on top and the left arm underneath. |
 
 Per-frame exceptions (for example a sword raised above the head on an up-facing attack frame) go in a small override table `order_overrides[anim][dir][frame]`, not in the art.
 

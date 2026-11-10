@@ -37,46 +37,66 @@
    "legs",
    "feet",
    "chest",
-   "hands",
+   "arm_far",
+   "sleeve_far",
+   "hand_far",
+   "arm_near",
+   "sleeve_near",
+   "hand_near",
    "head",
    "off",
    "main"
   ],
   "up": [
    "main",
+   "hand_far",
+   "sleeve_far",
+   "arm_far",
    "off",
+   "hand_near",
+   "sleeve_near",
+   "arm_near",
    "body",
    "hair",
    "legs",
    "feet",
    "chest",
-   "hands",
    "head",
    "back"
   ],
   "left": [
-   "off",
    "back",
+   "main",
+   "hand_far",
+   "sleeve_far",
+   "arm_far",
    "body",
    "hair",
    "legs",
    "feet",
    "chest",
-   "hands",
    "head",
-   "main"
+   "arm_near",
+   "sleeve_near",
+   "hand_near",
+   "off"
   ],
   "right": [
-   "off",
    "back",
+   "main",
+   "hand_far",
+   "sleeve_far",
+   "arm_far",
    "body",
    "hair",
    "legs",
    "feet",
    "chest",
-   "hands",
    "head",
-   "main"
+   "arm_near",
+   "sleeve_near",
+   "hand_near",
+   "off"
   ]
  },
  "orderOverrides": {
@@ -88,10 +108,15 @@
      "legs",
      "feet",
      "chest",
-     "hands",
      "head",
-     "off",
+     "arm_far",
+     "sleeve_far",
+     "hand_far",
      "main",
+     "arm_near",
+     "sleeve_near",
+     "hand_near",
+     "off",
      "back"
     ],
     "2": [
@@ -100,10 +125,15 @@
      "legs",
      "feet",
      "chest",
-     "hands",
      "head",
-     "off",
+     "arm_far",
+     "sleeve_far",
+     "hand_far",
      "main",
+     "arm_near",
+     "sleeve_near",
+     "hand_near",
+     "off",
      "back"
     ],
     "3": [
@@ -112,10 +142,15 @@
      "legs",
      "feet",
      "chest",
-     "hands",
      "head",
-     "off",
+     "arm_far",
+     "sleeve_far",
+     "hand_far",
      "main",
+     "arm_near",
+     "sleeve_near",
+     "hand_near",
+     "off",
      "back"
     ]
    }
@@ -306,6 +341,16 @@
    "file": "body/base.png"
   },
   {
+   "slot": "arm_far",
+   "item": "base",
+   "file": "arm_far/base.png"
+  },
+  {
+   "slot": "arm_near",
+   "item": "base",
+   "file": "arm_near/base.png"
+  },
+  {
    "slot": "hair",
    "item": "short",
    "file": "hair/short.png"
@@ -346,6 +391,36 @@
    "file": "chest/plate.png"
   },
   {
+   "slot": "sleeve_far",
+   "item": "tunic",
+   "file": "sleeve_far/tunic.png"
+  },
+  {
+   "slot": "sleeve_far",
+   "item": "hauberk",
+   "file": "sleeve_far/hauberk.png"
+  },
+  {
+   "slot": "sleeve_far",
+   "item": "plate",
+   "file": "sleeve_far/plate.png"
+  },
+  {
+   "slot": "sleeve_near",
+   "item": "tunic",
+   "file": "sleeve_near/tunic.png"
+  },
+  {
+   "slot": "sleeve_near",
+   "item": "hauberk",
+   "file": "sleeve_near/hauberk.png"
+  },
+  {
+   "slot": "sleeve_near",
+   "item": "plate",
+   "file": "sleeve_near/plate.png"
+  },
+  {
    "slot": "legs",
    "item": "trousers",
    "file": "legs/trousers.png"
@@ -376,19 +451,34 @@
    "file": "feet/sabatons.png"
   },
   {
-   "slot": "hands",
+   "slot": "hand_far",
    "item": "hand_wraps",
-   "file": "hands/hand_wraps.png"
+   "file": "hand_far/hand_wraps.png"
   },
   {
-   "slot": "hands",
+   "slot": "hand_far",
    "item": "gloves",
-   "file": "hands/gloves.png"
+   "file": "hand_far/gloves.png"
   },
   {
-   "slot": "hands",
+   "slot": "hand_far",
    "item": "gauntlets",
-   "file": "hands/gauntlets.png"
+   "file": "hand_far/gauntlets.png"
+  },
+  {
+   "slot": "hand_near",
+   "item": "hand_wraps",
+   "file": "hand_near/hand_wraps.png"
+  },
+  {
+   "slot": "hand_near",
+   "item": "gloves",
+   "file": "hand_near/gloves.png"
+  },
+  {
+   "slot": "hand_near",
+   "item": "gauntlets",
+   "file": "hand_near/gauntlets.png"
   },
   {
    "slot": "back",

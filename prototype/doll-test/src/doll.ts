@@ -71,10 +71,11 @@ export class PaperDoll {
     this.root = scene.add.container(x, y)
     this.body = this.makeSprite('body', 'base')
     this.sprites.set('body', this.body)
-    for (const slot of ['hair', 'head', 'chest', 'legs', 'feet', 'hands', 'back', 'main', 'off']) {
-      const item = slot === 'hair' ? loadout.hair : loadout[slot as keyof Loadout]
-      const sprite = this.makeSprite(slot, item || this.fallbackItem(slot))
-      sprite.setVisible(false)
+    for (const slot of this.allSlots()) {
+      if (slot === 'body') continue
+      const item = this.slotItem(slot) ?? this.fallbackItem(slot)
+      const sprite = this.makeSprite(slot, item)
+      sprite.setVisible(this.slotItem(slot) !== undefined)
       this.sprites.set(slot, sprite)
     }
     this.body.on('animationupdate', this.onFrame)
@@ -155,13 +156,37 @@ export class PaperDoll {
     return sprite
   }
 
+  private allSlots(): string[] {
+    const slots = new Set<string>(['body'])
+    for (const list of Object.values(this.manifest.order)) {
+      for (const slot of list) slots.add(slot)
+    }
+    for (const byFacing of Object.values(this.manifest.orderOverrides)) {
+      for (const byFrame of Object.values(byFacing)) {
+        for (const list of Object.values(byFrame)) {
+          for (const slot of list) slots.add(slot)
+        }
+      }
+    }
+    return [...slots]
+  }
+
+  private slotItem(slot: string): string | undefined {
+    if (slot === 'body' || slot === 'arm_far' || slot === 'arm_near') return 'base'
+    if (slot === 'hair') return this.loadout.hair
+    if (slot === 'sleeve_far' || slot === 'sleeve_near') return this.loadout.chest
+    if (slot === 'hand_far' || slot === 'hand_near') return this.loadout.hands
+    const value = this.loadout[slot as keyof Loadout]
+    return typeof value === 'string' ? value : undefined
+  }
+
   private equip(): void {
     const head = this.loadout.head
     const hideHair = head ? this.manifest.hidesHair.includes(head) : false
     const lockOff = this.loadout.main ? this.manifest.twoHand.includes(this.loadout.main) : false
     for (const [slot, sprite] of this.sprites) {
       if (slot === 'body') continue
-      const item = slot === 'hair' ? this.loadout.hair : this.loadout[slot as keyof Loadout]
+      const item = this.slotItem(slot)
       const hidden = !item || (slot === 'hair' && hideHair) || (slot === 'off' && lockOff)
       if (hidden || !item) {
         sprite.setVisible(false)

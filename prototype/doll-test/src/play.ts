@@ -95,7 +95,9 @@ export class PlayScene extends Phaser.Scene {
     this.cameras.main.setRoundPixels(true)
     this.cameras.main.startFollow(this.doll.root, true, 1, 1)
     this.keys = this.bindKeys()
+    this.game.canvas.tabIndex = 0
     this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+      this.game.canvas.focus({ preventScroll: true })
       if (pointerIsTouch(pointer)) {
         const world = this.cameras.main.getWorldPoint(pointer.x, pointer.y)
         this.tap = { x: world.x, y: world.y }

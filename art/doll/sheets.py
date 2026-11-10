@@ -138,7 +138,7 @@ RECOIL = (0, 0, 2, 4, 2, 0)
 
 # Up-facing strike: weapons move in front of the body so the swing reads.
 # Cape stays on top.
-UP_FRONT = ["body", "hair", "legs", "feet", "chest", "hands", "head", "off", "main", "back"]
+UP_FRONT = ["body", "hair", "legs", "feet", "chest", "head", "arm_far", "sleeve_far", "hand_far", "main", "arm_near", "sleeve_near", "hand_near", "off", "back"]
 ORDER_OVERRIDES = {"attack": {"up": {"1": UP_FRONT, "2": UP_FRONT, "3": UP_FRONT}}}
 
 TWO_HAND = ("bow",)
@@ -381,28 +381,21 @@ def draw_feet(g, p, kind):
             put(g, fx, fy, LEATHER)
 
 
-def both_hands(p):
-    return ((p["shoulder_m"], p["hand_m"]), (p["shoulder_o"], p["hand_o"]))
-
-
-def draw_hands(g, p, kind):
-    pairs = both_hands(p)
-    if p["view"] == "left":
-        pairs = tuple(sorted(pairs, key=lambda item: -item[1][0]))
-    for _shoulder, (hx, hy) in pairs:
-        if kind == "wraps":
-            rect(g, hx - 3, hy - 1, hx + 3, hy + 1, CLOTH)
-            rect(g, hx - 2, hy - 4, hx + 2, hy - 3, CLOTH2)
-            put(g, hx, hy, CLOTH)
-        elif kind == "gloves":
-            ell(g, hx, hy, 4, 3.4, LEATHER)
-            rect(g, hx - 2, hy - 5, hx + 2, hy - 3, TRIM)
-            put(g, hx, hy, LEATHER)
-        else:
-            ell(g, hx, hy, 4.2, 3.6, METAL)
-            rect(g, hx - 3, hy - 6, hx + 3, hy - 3, TRIM)
-            put(g, hx - 1, hy - 1, TRIM)
-            put(g, hx, hy, METAL)
+def paint_one_hand(g, p, kind, side):
+    _shoulder, (hx, hy) = arm_points(p, side)
+    if kind == "wraps":
+        rect(g, hx - 3, hy - 1, hx + 3, hy + 1, CLOTH)
+        rect(g, hx - 2, hy - 4, hx + 2, hy - 3, CLOTH2)
+        put(g, hx, hy, CLOTH)
+    elif kind == "gloves":
+        ell(g, hx, hy, 4, 3.4, LEATHER)
+        rect(g, hx - 2, hy - 5, hx + 2, hy - 3, TRIM)
+        put(g, hx, hy, LEATHER)
+    else:
+        ell(g, hx, hy, 4.2, 3.6, METAL)
+        rect(g, hx - 3, hy - 6, hx + 3, hy - 3, TRIM)
+        put(g, hx - 1, hy - 1, TRIM)
+        put(g, hx, hy, METAL)
 
 
 def hair_tail(g, x0, x1, y0, y1, skew):
@@ -412,18 +405,18 @@ def hair_tail(g, x0, x1, y0, y1, skew):
         rect(g, x0 + shift, y, x1 + shift, y, HAIR)
 
 
+def arm_points(p, side):
+    """Far arm is the character's right hand (main). Near arm is the left hand (off)."""
+    if side == "far":
+        return p["shoulder_m"], p["hand_m"]
+    return p["shoulder_o"], p["hand_o"]
+
+
 def paint_body(g, p):
     view = p["view"]
     for hip_pt, foot, bend, width in leg_pairs(p):
         limb(g, hip_pt, (foot[0], foot[1] - 2), SKIN, width, bend)
     torso(g, p, CLOTH, 1, 1, 18, 12)
-    arms = both_hands(p)
-    if view == "left":
-        arms = tuple(sorted(arms, key=lambda item: -item[1][0]))
-    for shoulder, hand in arms:
-        stroke(g, shoulder[0], shoulder[1], hand[0], hand[1], SKIN, 4 if view == "left" else 5)
-        ell(g, hand[0], hand[1], 3.1, 3.1, SKIN)
-        put(g, hand[0], hand[1], SKIN)
     draw_feet(g, p, "wraps")
     neck = p["neck"]
     rect(g, neck[0] - 3, neck[1] - 1, neck[0] + 3, neck[1] + 2, SKIN)
@@ -527,10 +520,15 @@ def paint_helm(g, p):
     put(g, hx, hy - 8, METAL)
 
 
+def paint_arm(g, p, side):
+    shoulder, hand = arm_points(p, side)
+    stroke(g, shoulder[0], shoulder[1], hand[0], hand[1], SKIN, 4 if p["view"] == "left" else 5)
+    ell(g, hand[0], hand[1], 3.1, 3.1, SKIN)
+    put(g, hand[0], hand[1], SKIN)
+
+
 def paint_tunic(g, p):
     torso(g, p, CLOTH, 2, 2, 20, 13)
-    for shoulder, hand in both_hands(p):
-        sleeve(g, shoulder, hand, 0.5, CLOTH, 5)
     hip = p["hip"]
     rect(g, hip[0] - (6 if p["view"] == "left" else 8), hip[1] + 1, hip[0] + (5 if p["view"] == "left" else 8), hip[1] + 2, LEATHER)
     if p["view"] == "down":
@@ -539,10 +537,21 @@ def paint_tunic(g, p):
     put(g, p["chest"][0], p["chest"][1], CLOTH)
 
 
+def paint_sleeve(g, p, kind, side):
+    shoulder, hand = arm_points(p, side)
+    if kind == "tunic":
+        sleeve(g, shoulder, hand, 0.5, CLOTH, 5)
+    elif kind == "hauberk":
+        sleeve(g, shoulder, hand, 0.82, METAL, 5)
+        chain(g)
+    else:
+        ell(g, shoulder[0], shoulder[1], 5.5, 4.5, METAL)
+        sleeve(g, shoulder, hand, 0.38, METAL, 5)
+    put(g, shoulder[0], shoulder[1], METAL if kind != "tunic" else CLOTH)
+
+
 def paint_hauberk(g, p):
     torso(g, p, METAL, 0, 8, 20, 13)
-    for shoulder, hand in both_hands(p):
-        sleeve(g, shoulder, hand, 0.82, METAL, 5)
     chain(g)
     hip = p["hip"]
     y = hip[1] + 7
@@ -553,9 +562,6 @@ def paint_hauberk(g, p):
 
 def paint_plate(g, p):
     torso(g, p, METAL, 1, 2, 20, 14)
-    for shoulder, hand in both_hands(p):
-        ell(g, shoulder[0], shoulder[1], 5.5, 4.5, METAL)
-        sleeve(g, shoulder, hand, 0.38, METAL, 5)
     if p["view"] != "left":
         rect(g, p["chest"][0] - 1, p["neck"][1] + 2, p["chest"][0] + 1, p["hip"][1], TRIM)
         rect(g, p["chest"][0] - 6, p["chest"][1] + 1, p["chest"][0] + 6, p["chest"][1] + 1, TRIM)
@@ -602,16 +608,16 @@ def paint_sabatons(g, p):
     draw_feet(g, p, "sabatons")
 
 
-def paint_wraps(g, p):
-    draw_hands(g, p, "wraps")
+def paint_wraps(g, p, side):
+    paint_one_hand(g, p, "wraps", side)
 
 
-def paint_gloves(g, p):
-    draw_hands(g, p, "gloves")
+def paint_gloves(g, p, side):
+    paint_one_hand(g, p, "gloves", side)
 
 
-def paint_gauntlets(g, p):
-    draw_hands(g, p, "gauntlets")
+def paint_gauntlets(g, p, side):
+    paint_one_hand(g, p, "gauntlets", side)
 
 
 def paint_drape(g, p, length, flare, sway_scale, mat):
@@ -826,6 +832,8 @@ def paint_lantern(g, p):
 
 PAINTERS = {
     ("body", "base"): paint_body,
+    ("arm_far", "base"): lambda g, p: paint_arm(g, p, "far"),
+    ("arm_near", "base"): lambda g, p: paint_arm(g, p, "near"),
     ("hair", "short"): lambda g, p: paint_hair(g, p, "short"),
     ("hair", "long"): lambda g, p: paint_hair(g, p, "long"),
     ("head", "cap"): paint_cap,
@@ -834,15 +842,24 @@ PAINTERS = {
     ("chest", "tunic"): paint_tunic,
     ("chest", "hauberk"): paint_hauberk,
     ("chest", "plate"): paint_plate,
+    ("sleeve_far", "tunic"): lambda g, p: paint_sleeve(g, p, "tunic", "far"),
+    ("sleeve_far", "hauberk"): lambda g, p: paint_sleeve(g, p, "hauberk", "far"),
+    ("sleeve_far", "plate"): lambda g, p: paint_sleeve(g, p, "plate", "far"),
+    ("sleeve_near", "tunic"): lambda g, p: paint_sleeve(g, p, "tunic", "near"),
+    ("sleeve_near", "hauberk"): lambda g, p: paint_sleeve(g, p, "hauberk", "near"),
+    ("sleeve_near", "plate"): lambda g, p: paint_sleeve(g, p, "plate", "near"),
     ("legs", "trousers"): paint_trousers,
     ("legs", "mail_chausses"): paint_chausses,
     ("legs", "greaves"): paint_greaves,
     ("feet", "boots"): paint_boots,
     ("feet", "mail_boots"): paint_mail_boots,
     ("feet", "sabatons"): paint_sabatons,
-    ("hands", "hand_wraps"): paint_wraps,
-    ("hands", "gloves"): paint_gloves,
-    ("hands", "gauntlets"): paint_gauntlets,
+    ("hand_far", "hand_wraps"): lambda g, p: paint_wraps(g, p, "far"),
+    ("hand_far", "gloves"): lambda g, p: paint_gloves(g, p, "far"),
+    ("hand_far", "gauntlets"): lambda g, p: paint_gauntlets(g, p, "far"),
+    ("hand_near", "hand_wraps"): lambda g, p: paint_wraps(g, p, "near"),
+    ("hand_near", "gloves"): lambda g, p: paint_gloves(g, p, "near"),
+    ("hand_near", "gauntlets"): lambda g, p: paint_gauntlets(g, p, "near"),
     ("back", "cape"): paint_cape,
     ("back", "cloak"): paint_cloak,
     ("back", "quiver"): paint_quiver,
@@ -857,7 +874,7 @@ PAINTERS = {
 GEAR_SLOTS = ("head", "chest", "legs", "feet", "hands", "back", "main", "off")
 
 
-def shade(mask):
+def shade(mask, darken=False):
     """Material id to palette index, light from the top left, 1 px outline."""
     idx = [[0] * N for _ in range(N)]
 
@@ -886,6 +903,8 @@ def shade(mask):
                 step = 2
             elif lit and not far1:
                 step = 4
+            if darken and step > 1:
+                step -= 1
             out[x] = m * 5 + step
     for y in range(N):
         for x in range(N):
@@ -956,8 +975,6 @@ def check_mask(slot, mask, pose):
     if slot == "body":
         points = (
             ("head", pose["head"], 0),
-            ("hand_m", pose["hand_m"], 0),
-            ("hand_o", pose["hand_o"], 0),
             ("chest", pose["chest"], 1),
         )
         for name, pt, rad in points:
@@ -984,10 +1001,18 @@ def check_mask(slot, mask, pose):
         for name in ("foot_m", "foot_o"):
             if not anchor_set(mask, pose[name][0], pose[name][1]):
                 problems.append(f"{label}: {name} sole off {pose[name]}")
-    elif slot == "hands":
-        for name in ("hand_m", "hand_o"):
-            if not nearest(mask, pose[name][0], pose[name][1], 0):
-                problems.append(f"{label}: {name} empty")
+    elif slot in ("arm_far", "hand_far"):
+        if not nearest(mask, pose["hand_m"][0], pose["hand_m"][1], 0):
+            problems.append(f"{label}: far grip empty")
+    elif slot in ("arm_near", "hand_near"):
+        if not nearest(mask, pose["hand_o"][0], pose["hand_o"][1], 0):
+            problems.append(f"{label}: near grip empty")
+    elif slot == "sleeve_far":
+        if not nearest(mask, pose["shoulder_m"][0], pose["shoulder_m"][1], 1):
+            problems.append(f"{label}: far sleeve off the shoulder")
+    elif slot == "sleeve_near":
+        if not nearest(mask, pose["shoulder_o"][0], pose["shoulder_o"][1], 1):
+            problems.append(f"{label}: near sleeve off the shoulder")
     elif slot == "back":
         if not nearest(mask, pose["neck"][0] + (6 if pose["view"] == "left" else 0), pose["neck"][1], 4):
             problems.append(f"{label}: back off the shoulders")
@@ -1084,12 +1109,16 @@ def composite(sheets, loadout, anim, view, frame, table):
     img = Image.new("RGBA", (N, N), (0, 0, 0, 0))
     head = loadout.get("head")
     for slot in order_for(anim, view, frame):
-        if slot == "body":
+        if slot in ("body", "arm_far", "arm_near"):
             item = "base"
         elif slot == "hair":
             if head in HIDES_HAIR:
                 continue
             item = loadout.get("hair")
+        elif slot in ("sleeve_far", "sleeve_near"):
+            item = loadout.get("chest")
+        elif slot in ("hand_far", "hand_near"):
+            item = loadout.get("hands")
         else:
             item = loadout.get(slot)
         if not item:
@@ -1113,7 +1142,8 @@ def bake_sheets():
                     mask = grid()
                     painter(mask, pose)
                     problems.extend(check_mask(slot, mask, pose))
-                    idx = shade(mask)
+                    darker = slot in ("arm_far", "sleeve_far", "hand_far") and view == "left"
+                    idx = shade(mask, darken=darker)
                     blit(sheet, idx, frame, row0 + di)
                     if view == "left":
                         blit(sheet, mirror_grid(idx), frame, row0 + 3)
@@ -1162,9 +1192,11 @@ def write_palettes(tables):
 
 def write_manifest(tables):
     def items_for(slot):
+        if slot == "hands":
+            return [{"id": item, "name": NAMES[item]} for item in ("hand_wraps", "gloves", "gauntlets")]
         found = []
         for s, item in PAINTERS:
-            if s == slot and not (slot == "body"):
+            if s == slot and slot != "body":
                 found.append({"id": item, "name": NAMES[item]})
         return found
 
@@ -1314,7 +1346,18 @@ def filmstrip(sheets, tables, manifest):
 
 def contact_sheet(sheets, tables):
     """Half-scale sheet of the 24 gear items, colored with the Steel table."""
-    gear = [(slot, item) for slot, item in PAINTERS if slot not in ("body", "hair")]
+    gear = [
+        (slot, item) for slot, item in (
+            ("head", "cap"), ("head", "mail_coif"), ("head", "helm_plain"),
+            ("chest", "tunic"), ("chest", "hauberk"), ("chest", "plate"),
+            ("legs", "trousers"), ("legs", "mail_chausses"), ("legs", "greaves"),
+            ("feet", "boots"), ("feet", "mail_boots"), ("feet", "sabatons"),
+            ("hand_near", "hand_wraps"), ("hand_near", "gloves"), ("hand_near", "gauntlets"),
+            ("back", "cloak"), ("back", "quiver"), ("back", "cape"),
+            ("main", "sword"), ("main", "bow"), ("main", "pistol"),
+            ("off", "shield"), ("off", "tome"), ("off", "lantern"),
+        )
+    ]
     if len(gear) != 24:
         raise RuntimeError(f"expected 24 gear sheets, found {len(gear)}")
     table = tables["steel"]
