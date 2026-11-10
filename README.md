@@ -20,5 +20,25 @@ A top-down action RPG in the spirit of Diablo's loop (explore, clear, loot, grow
 | `figcraft/exports/` | PNG exports of every frame |
 | `art/` | 64 x 64 character art: paper-doll hero layers (`art/doll/`), NPC and enemy sprites (`art/x64/`) derived from 16 x 16 CC0 Pixel Art Atlas originals (`art/originals-16/`), FX renders, building renders, and the scripts that make them. See [art/SOURCES.md](art/SOURCES.md) |
 
+## Paper doll test
+
+A small Phaser 4 scene walks the hero on a 32 x 32 tile field and swaps clothing while the walk keeps playing. Sheets live in `art/doll/hero/`. Palettes in the panel are Steel, Gilded, Moss, and Crimson.
+
+```bash
+cd prototype/doll-test
+npm install
+npm run dev
+```
+
+Walk with WASD or the arrow keys. Attack with Space, a click, or the Attack button. On a phone, drag the stick or tap the ground. The turntable checkbox shows the same loadout walking in four directions.
+
+To bake the sheets again (original code drawings, no outside art):
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r art/requirements.txt
+.venv/bin/python art/doll/sheets.py
+```
+
 ## Design tools
 Designs live in [FigCraft](https://getartcraft.com/apps/figcraft) (open source, github.com/storytold/figcraft). Not Figma.

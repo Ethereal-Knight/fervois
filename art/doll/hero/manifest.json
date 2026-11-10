@@ -1,0 +1,790 @@
+{
+ "frame": 64,
+ "columns": 8,
+ "rows": 12,
+ "pivot": [
+  32,
+  60
+ ],
+ "directions": [
+  "down",
+  "left",
+  "up",
+  "right"
+ ],
+ "anims": {
+  "idle": {
+   "row": 0,
+   "frames": 4,
+   "fps": 6
+  },
+  "walk": {
+   "row": 4,
+   "frames": 8,
+   "fps": 12
+  },
+  "attack": {
+   "row": 8,
+   "frames": 6,
+   "fps": 16
+  }
+ },
+ "order": {
+  "down": [
+   "back",
+   "body",
+   "hair",
+   "legs",
+   "feet",
+   "chest",
+   "hands",
+   "head",
+   "off",
+   "main"
+  ],
+  "up": [
+   "main",
+   "off",
+   "body",
+   "hair",
+   "legs",
+   "feet",
+   "chest",
+   "hands",
+   "head",
+   "back"
+  ],
+  "left": [
+   "off",
+   "back",
+   "body",
+   "hair",
+   "legs",
+   "feet",
+   "chest",
+   "hands",
+   "head",
+   "main"
+  ],
+  "right": [
+   "off",
+   "back",
+   "body",
+   "hair",
+   "legs",
+   "feet",
+   "chest",
+   "hands",
+   "head",
+   "main"
+  ]
+ },
+ "orderOverrides": {
+  "attack": {
+   "up": {
+    "1": [
+     "body",
+     "hair",
+     "legs",
+     "feet",
+     "chest",
+     "hands",
+     "head",
+     "off",
+     "main",
+     "back"
+    ],
+    "2": [
+     "body",
+     "hair",
+     "legs",
+     "feet",
+     "chest",
+     "hands",
+     "head",
+     "off",
+     "main",
+     "back"
+    ],
+    "3": [
+     "body",
+     "hair",
+     "legs",
+     "feet",
+     "chest",
+     "hands",
+     "head",
+     "off",
+     "main",
+     "back"
+    ]
+   }
+  }
+ },
+ "hidesHair": [
+  "helm",
+  "helm_plain",
+  "hood",
+  "mail_coif"
+ ],
+ "twoHand": [
+  "bow"
+ ],
+ "slots": [
+  {
+   "id": "hair",
+   "name": "Hair",
+   "optional": false,
+   "items": [
+    {
+     "id": "short",
+     "name": "Short hair"
+    },
+    {
+     "id": "long",
+     "name": "Long hair"
+    }
+   ]
+  },
+  {
+   "id": "head",
+   "name": "Head",
+   "optional": true,
+   "items": [
+    {
+     "id": "cap",
+     "name": "Knit Cap"
+    },
+    {
+     "id": "mail_coif",
+     "name": "Mail Coif"
+    },
+    {
+     "id": "helm_plain",
+     "name": "Plain Helm"
+    }
+   ]
+  },
+  {
+   "id": "chest",
+   "name": "Chest",
+   "optional": true,
+   "items": [
+    {
+     "id": "tunic",
+     "name": "Homespun Tunic"
+    },
+    {
+     "id": "hauberk",
+     "name": "Mail Hauberk"
+    },
+    {
+     "id": "plate",
+     "name": "Plate Cuirass"
+    }
+   ]
+  },
+  {
+   "id": "legs",
+   "name": "Legs",
+   "optional": true,
+   "items": [
+    {
+     "id": "trousers",
+     "name": "Cloth Trousers"
+    },
+    {
+     "id": "mail_chausses",
+     "name": "Mail Chausses"
+    },
+    {
+     "id": "greaves",
+     "name": "Plate Greaves"
+    }
+   ]
+  },
+  {
+   "id": "feet",
+   "name": "Feet",
+   "optional": true,
+   "items": [
+    {
+     "id": "boots",
+     "name": "Leather Boots"
+    },
+    {
+     "id": "mail_boots",
+     "name": "Mail Boots"
+    },
+    {
+     "id": "sabatons",
+     "name": "Sabatons"
+    }
+   ]
+  },
+  {
+   "id": "hands",
+   "name": "Hands",
+   "optional": true,
+   "items": [
+    {
+     "id": "hand_wraps",
+     "name": "Hand Wraps"
+    },
+    {
+     "id": "gloves",
+     "name": "Leather Gloves"
+    },
+    {
+     "id": "gauntlets",
+     "name": "Plate Gauntlets"
+    }
+   ]
+  },
+  {
+   "id": "back",
+   "name": "Back",
+   "optional": true,
+   "items": [
+    {
+     "id": "cape",
+     "name": "Cape"
+    },
+    {
+     "id": "cloak",
+     "name": "Travel Cloak"
+    },
+    {
+     "id": "quiver",
+     "name": "Quiver"
+    }
+   ]
+  },
+  {
+   "id": "main",
+   "name": "Main hand",
+   "optional": true,
+   "items": [
+    {
+     "id": "sword",
+     "name": "Arming Sword"
+    },
+    {
+     "id": "bow",
+     "name": "Hunter Bow"
+    },
+    {
+     "id": "pistol",
+     "name": "Flintlock"
+    }
+   ]
+  },
+  {
+   "id": "off",
+   "name": "Off hand",
+   "optional": true,
+   "items": [
+    {
+     "id": "shield",
+     "name": "Heater Shield"
+    },
+    {
+     "id": "tome",
+     "name": "Tome"
+    },
+    {
+     "id": "lantern",
+     "name": "Waylamp Lantern"
+    }
+   ]
+  }
+ ],
+ "sheets": [
+  {
+   "slot": "body",
+   "item": "base",
+   "file": "body/base.png"
+  },
+  {
+   "slot": "hair",
+   "item": "short",
+   "file": "hair/short.png"
+  },
+  {
+   "slot": "hair",
+   "item": "long",
+   "file": "hair/long.png"
+  },
+  {
+   "slot": "head",
+   "item": "cap",
+   "file": "head/cap.png"
+  },
+  {
+   "slot": "head",
+   "item": "mail_coif",
+   "file": "head/mail_coif.png"
+  },
+  {
+   "slot": "head",
+   "item": "helm_plain",
+   "file": "head/helm_plain.png"
+  },
+  {
+   "slot": "chest",
+   "item": "tunic",
+   "file": "chest/tunic.png"
+  },
+  {
+   "slot": "chest",
+   "item": "hauberk",
+   "file": "chest/hauberk.png"
+  },
+  {
+   "slot": "chest",
+   "item": "plate",
+   "file": "chest/plate.png"
+  },
+  {
+   "slot": "legs",
+   "item": "trousers",
+   "file": "legs/trousers.png"
+  },
+  {
+   "slot": "legs",
+   "item": "mail_chausses",
+   "file": "legs/mail_chausses.png"
+  },
+  {
+   "slot": "legs",
+   "item": "greaves",
+   "file": "legs/greaves.png"
+  },
+  {
+   "slot": "feet",
+   "item": "boots",
+   "file": "feet/boots.png"
+  },
+  {
+   "slot": "feet",
+   "item": "mail_boots",
+   "file": "feet/mail_boots.png"
+  },
+  {
+   "slot": "feet",
+   "item": "sabatons",
+   "file": "feet/sabatons.png"
+  },
+  {
+   "slot": "hands",
+   "item": "hand_wraps",
+   "file": "hands/hand_wraps.png"
+  },
+  {
+   "slot": "hands",
+   "item": "gloves",
+   "file": "hands/gloves.png"
+  },
+  {
+   "slot": "hands",
+   "item": "gauntlets",
+   "file": "hands/gauntlets.png"
+  },
+  {
+   "slot": "back",
+   "item": "cape",
+   "file": "back/cape.png"
+  },
+  {
+   "slot": "back",
+   "item": "cloak",
+   "file": "back/cloak.png"
+  },
+  {
+   "slot": "back",
+   "item": "quiver",
+   "file": "back/quiver.png"
+  },
+  {
+   "slot": "main",
+   "item": "sword",
+   "file": "main/sword.png"
+  },
+  {
+   "slot": "main",
+   "item": "bow",
+   "file": "main/bow.png"
+  },
+  {
+   "slot": "main",
+   "item": "pistol",
+   "file": "main/pistol.png"
+  },
+  {
+   "slot": "off",
+   "item": "shield",
+   "file": "off/shield.png"
+  },
+  {
+   "slot": "off",
+   "item": "tome",
+   "file": "off/tome.png"
+  },
+  {
+   "slot": "off",
+   "item": "lantern",
+   "file": "off/lantern.png"
+  }
+ ],
+ "variants": [
+  {
+   "id": "steel",
+   "name": "Steel",
+   "colors": [
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#403132ff",
+    "#a16553ff",
+    "#bf7b66ff",
+    "#e8b48aff",
+    "#ffdcacff",
+    "#271a1dff",
+    "#240d08ff",
+    "#421a11ff",
+    "#6b3e22ff",
+    "#8a5d34ff",
+    "#16111cff",
+    "#000000ff",
+    "#000000ff",
+    "#1a1420ff",
+    "#392b3fff",
+    "#201f2eff",
+    "#1a1f31ff",
+    "#2c354fff",
+    "#4a5878ff",
+    "#667f97ff",
+    "#39181fff",
+    "#811324ff",
+    "#9f1b2fff",
+    "#c8372eff",
+    "#e76a43ff",
+    "#302e3aff",
+    "#54556eff",
+    "#72768cff",
+    "#9aa4b5ff",
+    "#d9d1bfff",
+    "#23212dff",
+    "#1f222dff",
+    "#363b4bff",
+    "#5a6274ff",
+    "#7b8793ff",
+    "#2a1d1fff",
+    "#33160eff",
+    "#512518ff",
+    "#7a4e2cff",
+    "#996e40ff",
+    "#2d1f1fff",
+    "#451e11ff",
+    "#632d1bff",
+    "#8c5a2eff",
+    "#ab7b42ff",
+    "#1e3c49ff",
+    "#1f85b8ff",
+    "#299dd6ff",
+    "#40e8ffff",
+    "#59ffffff",
+    "#423d43ff",
+    "#8c8dabff",
+    "#adb2c9ff",
+    "#f2eee2ff",
+    "#ffffffff",
+    "#422535ff",
+    "#ab4778ff",
+    "#c95890ff",
+    "#f2789bff",
+    "#ff98a1ff"
+   ]
+  },
+  {
+   "id": "gilded",
+   "name": "Gilded",
+   "colors": [
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#403132ff",
+    "#a16553ff",
+    "#bf7b66ff",
+    "#e8b48aff",
+    "#ffdcacff",
+    "#271a1dff",
+    "#240d08ff",
+    "#421a11ff",
+    "#6b3e22ff",
+    "#8a5d34ff",
+    "#16111cff",
+    "#000000ff",
+    "#000000ff",
+    "#1a1420ff",
+    "#392b3fff",
+    "#1d1f35ff",
+    "#1a2655ff",
+    "#263a73ff",
+    "#3d5a9cff",
+    "#5489bbff",
+    "#39181fff",
+    "#811324ff",
+    "#9f1b2fff",
+    "#c8372eff",
+    "#e76a43ff",
+    "#3e3b46ff",
+    "#8a8ba7ff",
+    "#acb0c5ff",
+    "#e2e6eeff",
+    "#ffffffff",
+    "#392c22ff",
+    "#824a1bff",
+    "#a05e25ff",
+    "#c99a3aff",
+    "#e8ba51ff",
+    "#2a1d1fff",
+    "#33160eff",
+    "#512518ff",
+    "#7a4e2cff",
+    "#996e40ff",
+    "#2d1f1fff",
+    "#451e11ff",
+    "#632d1bff",
+    "#8c5a2eff",
+    "#ab7b42ff",
+    "#1e3c49ff",
+    "#1f85b8ff",
+    "#299dd6ff",
+    "#40e8ffff",
+    "#59ffffff",
+    "#423d43ff",
+    "#8c8dabff",
+    "#adb2c9ff",
+    "#f2eee2ff",
+    "#ffffffff",
+    "#422535ff",
+    "#ab4778ff",
+    "#c95890ff",
+    "#f2789bff",
+    "#ff98a1ff"
+   ]
+  },
+  {
+   "id": "moss",
+   "name": "Moss",
+   "colors": [
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#403132ff",
+    "#a16553ff",
+    "#bf7b66ff",
+    "#e8b48aff",
+    "#ffdcacff",
+    "#271a1dff",
+    "#240d08ff",
+    "#421a11ff",
+    "#6b3e22ff",
+    "#8a5d34ff",
+    "#16111cff",
+    "#000000ff",
+    "#000000ff",
+    "#1a1420ff",
+    "#392b3fff",
+    "#1e1f1eff",
+    "#0a1307ff",
+    "#1b3114ff",
+    "#3f5a2aff",
+    "#647940ff",
+    "#392c22ff",
+    "#824a1bff",
+    "#a05e25ff",
+    "#c99a3aff",
+    "#e8ba51ff",
+    "#393639ff",
+    "#686986ff",
+    "#868ba4ff",
+    "#c5cdb0ff",
+    "#f1e9d5ff",
+    "#212320ff",
+    "#15270fff",
+    "#26451dff",
+    "#4e6e34ff",
+    "#758d4bff",
+    "#20181cff",
+    "#030201ff",
+    "#21140cff",
+    "#4a3820ff",
+    "#695534ff",
+    "#2d1f1fff",
+    "#451e11ff",
+    "#632d1bff",
+    "#8c5a2eff",
+    "#ab7b42ff",
+    "#1e3c49ff",
+    "#1f85b8ff",
+    "#299dd6ff",
+    "#40e8ffff",
+    "#59ffffff",
+    "#423d43ff",
+    "#8c8dabff",
+    "#adb2c9ff",
+    "#f2eee2ff",
+    "#ffffffff",
+    "#422535ff",
+    "#ab4778ff",
+    "#c95890ff",
+    "#f2789bff",
+    "#ff98a1ff"
+   ]
+  },
+  {
+   "id": "crimson",
+   "name": "Crimson",
+   "colors": [
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#403132ff",
+    "#a16553ff",
+    "#bf7b66ff",
+    "#e8b48aff",
+    "#ffdcacff",
+    "#271a1dff",
+    "#240d08ff",
+    "#421a11ff",
+    "#6b3e22ff",
+    "#8a5d34ff",
+    "#16111cff",
+    "#000000ff",
+    "#000000ff",
+    "#1a1420ff",
+    "#392b3fff",
+    "#2a131eff",
+    "#330817ff",
+    "#510f26ff",
+    "#7a1e2aff",
+    "#99372fff",
+    "#3e3023ff",
+    "#995b1fff",
+    "#b76f29ff",
+    "#e0b040ff",
+    "#ffd058ff",
+    "#201b26ff",
+    "#070709ff",
+    "#211f27ff",
+    "#4a4450ff",
+    "#6c656fff",
+    "#39181fff",
+    "#811324ff",
+    "#9f1b2fff",
+    "#c8372eff",
+    "#e76a43ff",
+    "#20141cff",
+    "#030101ff",
+    "#210c0fff",
+    "#4a2420ff",
+    "#694234ff",
+    "#2d1f1fff",
+    "#451e11ff",
+    "#632d1bff",
+    "#8c5a2eff",
+    "#ab7b42ff",
+    "#1e3c49ff",
+    "#1f85b8ff",
+    "#299dd6ff",
+    "#40e8ffff",
+    "#59ffffff",
+    "#423d43ff",
+    "#8c8dabff",
+    "#adb2c9ff",
+    "#f2eee2ff",
+    "#ffffffff",
+    "#422535ff",
+    "#ab4778ff",
+    "#c95890ff",
+    "#f2789bff",
+    "#ff98a1ff"
+   ]
+  }
+ ],
+ "presets": [
+  {
+   "id": "light",
+   "name": "Light ranger",
+   "variant": "moss",
+   "loadout": {
+    "hair": "short",
+    "head": "cap",
+    "chest": "tunic",
+    "legs": "trousers",
+    "feet": "boots",
+    "hands": "hand_wraps",
+    "back": "quiver",
+    "main": "bow"
+   }
+  },
+  {
+   "id": "mail",
+   "name": "Mail and tome",
+   "variant": "steel",
+   "loadout": {
+    "hair": "long",
+    "head": "mail_coif",
+    "chest": "hauberk",
+    "legs": "mail_chausses",
+    "feet": "mail_boots",
+    "hands": "gloves",
+    "back": "cloak",
+    "main": "sword",
+    "off": "tome"
+   }
+  },
+  {
+   "id": "heavy",
+   "name": "Heavy knight",
+   "variant": "gilded",
+   "loadout": {
+    "hair": "short",
+    "head": "helm_plain",
+    "chest": "plate",
+    "legs": "greaves",
+    "feet": "sabatons",
+    "hands": "gauntlets",
+    "back": "cape",
+    "main": "sword",
+    "off": "shield"
+   }
+  },
+  {
+   "id": "tinker",
+   "name": "Tinker",
+   "variant": "crimson",
+   "loadout": {
+    "hair": "short",
+    "head": "cap",
+    "chest": "tunic",
+    "legs": "trousers",
+    "feet": "boots",
+    "hands": "gloves",
+    "back": "cloak",
+    "main": "pistol",
+    "off": "lantern"
+   }
+  }
+ ]
+}
