@@ -244,7 +244,7 @@ ITEMS = {
 # or behind with the weapons. Slots the concept generator does not draw are skipped.
 ORDER = {
  "down": ["back", "body", "hair", "legs", "feet", "chest", "arm_far", "sleeve_far", "hand_far", "arm_near", "sleeve_near", "hand_near", "head", "off", "main"],
- "up": ["main", "hand_far", "sleeve_far", "arm_far", "off", "hand_near", "sleeve_near", "arm_near", "body", "hair", "legs", "feet", "chest", "head", "back"],
+ "up": ["main", "hand_far", "sleeve_far", "arm_far", "off", "hand_near", "sleeve_near", "arm_near", "body", "legs", "feet", "chest", "head", "back", "hair"],
  "left": ["back", "main", "hand_far", "sleeve_far", "arm_far", "body", "hair", "legs", "feet", "chest", "head", "arm_near", "sleeve_near", "hand_near", "off"],
 }
 # Head pieces that cover the hair layer. mail_coif matches the open-face rule used by the sheet baker.
@@ -417,3 +417,5 @@ if __name__ == "__main__":
     for name, lo, p, aura in combos:
         composite(lo, p, "down", aura).save(f"{R}/combos/{name}.png"); out["combos"].append({"name": name, "loadout": lo})
     json.dump(out, open(f"{R}/doll.json", "w"), indent=1, default=str); print("ok", len(out["layers"]), "layers")
+    import sheets
+    sheets.export_veris_stills()

@@ -22,7 +22,7 @@ A top-down action RPG in the spirit of Diablo's loop (explore, clear, loot, grow
 
 ## Paper doll test
 
-A small Phaser 4 scene walks the hero on a 32 x 32 tile field and swaps clothing while the walk keeps playing. Sheets live in `art/doll/hero/`. Palettes in the panel are Steel, Gilded, Moss, and Crimson.
+A small Phaser 4 scene walks the hero on a 32 x 32 tile field and swaps clothing while the walk keeps playing. Sheets live in `art/doll/hero/`. Palettes in the panel are Steel, Gilded, Moss, Crimson, and Veris. The Veris preset equips the protagonist outfit.
 
 ```bash
 cd prototype/doll-test
