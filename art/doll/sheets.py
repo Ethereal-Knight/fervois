@@ -38,6 +38,7 @@ from doll import (  # noqa: E402
     CLOTH,
     CLOTH2,
     EYE,
+    GEM,
     HAIR,
     HIDES_HAIR,
     LEATHER,
@@ -137,8 +138,8 @@ DRAW = (0.35, 0.75, 1.0, 0.0, 0.0, 0.1)
 RECOIL = (0, 0, 2, 4, 2, 0)
 
 # Up-facing strike: weapons move in front of the body so the swing reads.
-# Cape stays on top.
-UP_FRONT = ["body", "hair", "legs", "feet", "chest", "head", "arm_far", "sleeve_far", "hand_far", "main", "arm_near", "sleeve_near", "hand_near", "off", "back"]
+# The coat stays on top of the torso. Hair is last so a long fall covers the coat.
+UP_FRONT = ["body", "legs", "feet", "chest", "head", "arm_far", "sleeve_far", "hand_far", "main", "arm_near", "sleeve_near", "hand_near", "off", "back", "hair"]
 ORDER_OVERRIDES = {"attack": {"up": {"1": UP_FRONT, "2": UP_FRONT, "3": UP_FRONT}}}
 
 TWO_HAND = ("bow",)
@@ -171,6 +172,14 @@ NAMES = {
     "shield": "Heater Shield",
     "tome": "Tome",
     "lantern": "Waylamp Lantern",
+    "hair_long_streak": "Long hair, silver streak",
+    "veris_circlet": "Ferro Circlet",
+    "veris_vest_plate": "Ocular Vest",
+    "veris_greaves": "Ferro Greaves",
+    "veris_heeled_boots": "Heeled Ferro Boots",
+    "veris_gauntlets": "Ferro Gauntlets",
+    "veris_longcoat": "Veris Longcoat",
+    "ferro_blade": "Ferro Blade",
 }
 
 
@@ -398,11 +407,11 @@ def paint_one_hand(g, p, kind, side):
         put(g, hx, hy, METAL)
 
 
-def hair_tail(g, x0, x1, y0, y1, skew):
+def hair_tail(g, x0, x1, y0, y1, skew, mat=HAIR):
     span = max(1, y1 - y0)
     for y in range(y0, y1):
         shift = round(skew * (y - y0) / span)
-        rect(g, x0 + shift, y, x1 + shift, y, HAIR)
+        rect(g, x0 + shift, y, x1 + shift, y, mat)
 
 
 def arm_points(p, side):
@@ -830,40 +839,267 @@ def paint_lantern(g, p):
     put(g, x, y, TRIM)
 
 
+def paint_hair_streak(g, p):
+    """Long black hair with a silver-gray streak at the front left."""
+    paint_hair(g, p, "long")
+    hx, hy = p["head"]
+    skew = p["cape"]
+    view = p["view"]
+    if view == "down":
+        hair_tail(g, hx - 13, hx - 11, hy - 5, hy + 13, skew, METAL)
+        put(g, hx - 12, hy + 2, WHITE)
+    elif view == "up":
+        hair_tail(g, hx - 7, hx - 4, hy + 6, hy + 16, skew, METAL)
+        put(g, hx - 5, hy + 10, WHITE)
+    else:
+        hair_tail(g, hx + 3, hx + 5, hy - 2, hy + 14, skew, METAL)
+        put(g, hx + 4, hy + 4, WHITE)
+    put(g, hx, hy - 6, HAIR)
+
+
+def paint_circlet(g, p):
+    hx, hy = p["head"]
+    view = p["view"]
+    y = hy - 5
+    if view == "left":
+        rect(g, hx - 5, y, hx + 4, y + 1, METAL)
+        put(g, hx - 5, y, GEM)
+        put(g, hx - 4, y, ACCENT)
+    elif view == "up":
+        rect(g, hx - 6, y, hx + 6, y + 1, METAL)
+        put(g, hx, y, GEM)
+    else:
+        rect(g, hx - 7, y, hx + 7, y + 1, METAL)
+        put(g, hx, y, GEM)
+        put(g, hx, y - 1, ACCENT)
+    put(g, hx, hy - 7, METAL)
+
+
+def ocular(g, x, y):
+    """Silver ring, violet core, one pale emissive pixel."""
+    rect(g, x - 2, y - 2, x + 2, y + 2, METAL)
+    put(g, x - 1, y, ACCENT)
+    put(g, x + 1, y, ACCENT)
+    put(g, x, y - 1, ACCENT)
+    put(g, x, y + 1, ACCENT)
+    put(g, x, y, WHITE)
+
+
+def paint_veris_vest(g, p):
+    chest = p["chest"]
+    neck = p["neck"]
+    hip = p["hip"]
+    view = p["view"]
+    cx, cy = chest
+    if view == "up":
+        rect(g, cx - 5, neck[1], cx + 5, cy + 2, TRIM)
+    elif view == "left":
+        rect(g, cx - 5, neck[1] + 1, cx + 1, hip[1] + 1, TRIM)
+        rect(g, cx - 4, cy - 3, cx, cy + 3, METAL)
+        rect(g, cx - 4, cy - 3, cx, cy - 3, WHITE)
+        ocular(g, cx - 2, cy)
+        put(g, cx - 4, cy + 2, GEM)
+    else:
+        rect(g, cx - 6, neck[1] + 1, cx + 6, hip[1] + 1, TRIM)
+        rect(g, cx - 4, cy - 4, cx + 4, cy + 4, METAL)
+        rect(g, cx - 4, cy - 4, cx + 4, cy - 4, WHITE)
+        ocular(g, cx, cy)
+        put(g, cx - 3, cy + 3, GEM)
+        put(g, cx + 3, cy + 3, GEM)
+    put(g, cx, cy, METAL)
+
+
+def paint_veris_sleeve(g, p, side):
+    shoulder, hand = arm_points(p, side)
+    sx, sy = shoulder
+    ell(g, sx, sy, 6, 4.4, METAL)
+    out = -1 if sx < p["chest"][0] else 1
+    put(g, sx + out * 3, sy - 5, METAL)
+    put(g, sx + out * 2, sy - 4, METAL)
+    put(g, sx + out, sy - 3, TRIM)
+    sleeve(g, shoulder, hand, 0.62, METAL, 4)
+    put(g, sx, sy - 1, GEM)
+    put(g, sx + out, sy, ACCENT)
+    put(g, sx, sy, METAL)
+
+
+def coat_tails(g, specs, sway):
+    """Two or three chunky hem points. The tips swing farther than the roots."""
+    for i, (x, y0, y1) in enumerate(specs):
+        span = max(1, y1 - y0)
+        gain = 1.6 + i * 0.25
+        for y in range(y0, y1 + 1):
+            shift = round(sway * gain * (y - y0) / span)
+            rect(g, x + shift, y, x + 2 + shift, y, CLOTH)
+            if y % 4 == 0:
+                put(g, x + shift, y, CLOTH2)
+        tip = round(sway * gain)
+        put(g, x + 1 + tip, y1, METAL)
+
+
+def paint_veris_coat(g, p):
+    neck = p["neck"]
+    chest = p["chest"]
+    sway = p["cape"]
+    view = p["view"]
+    cx = chest[0]
+    top = neck[1] - 1
+    if view == "left":
+        rect(g, cx + 4, top, cx + 10, 51, CLOTH)
+        rect(g, cx + 9, top + 2, cx + 10, 50, CLOTH2)
+        for y in range(top + 3, 50, 4):
+            put(g, cx + 10, y, METAL)
+        rect(g, neck[0] + 4, neck[1] - 2, neck[0] + 8, neck[1] + 2, CLOTH)
+        put(g, neck[0] + 8, neck[1] - 2, METAL)
+        coat_tails(g, [(cx + 4, 49, 58), (cx + 7, 49, 61), (cx + 10, 49, 56)], sway)
+        put(g, neck[0] + 6, neck[1], CLOTH)
+    elif view == "up":
+        rect(g, cx - 9, top - 1, cx + 9, 51, CLOTH)
+        rect(g, cx - 9, top, cx - 8, 50, CLOTH2)
+        rect(g, cx + 8, top, cx + 9, 50, CLOTH2)
+        for y in range(top + 3, 50, 4):
+            put(g, cx - 9, y, METAL)
+            put(g, cx + 9, y, METAL)
+        rect(g, cx - 5, neck[1] - 4, cx + 5, neck[1] + 1, CLOTH)
+        rect(g, cx - 5, neck[1] - 4, cx + 5, neck[1] - 3, METAL)
+        ocular(g, cx, chest[1] + 2)
+        for i, y in enumerate(range(chest[1] + 8, chest[1] + 16)):
+            put(g, cx + 6 + (i % 2), y, METAL)
+            put(g, cx + 7 + (i % 2), y, TRIM)
+        coat_tails(g, [(cx - 7, 49, 59), (cx - 1, 49, 61), (cx + 5, 49, 57)], sway)
+        put(g, neck[0], neck[1], CLOTH)
+    else:
+        rect(g, cx - 12, top, cx - 9, 51, CLOTH)
+        rect(g, cx + 9, top, cx + 12, 51, CLOTH)
+        rect(g, cx - 12, top + 1, cx - 12, 50, CLOTH2)
+        rect(g, cx + 12, top + 1, cx + 12, 50, CLOTH2)
+        for y in range(top + 3, 50, 4):
+            put(g, cx - 11, y, METAL)
+            put(g, cx + 11, y, METAL)
+        rect(g, neck[0] - 8, neck[1] - 4, neck[0] - 6, neck[1] + 1, CLOTH)
+        rect(g, neck[0] + 6, neck[1] - 4, neck[0] + 8, neck[1] + 1, CLOTH)
+        put(g, neck[0] - 8, neck[1] - 4, METAL)
+        put(g, neck[0] + 8, neck[1] - 4, METAL)
+        coat_tails(g, [(cx - 11, 49, 59), (cx - 1, 50, 57), (cx + 8, 49, 61)], sway)
+        put(g, neck[0], neck[1], CLOTH)
+
+
+def paint_veris_greaves(g, p):
+    paint_greaves(g, p)
+    hip = p["hip"]
+    hx, hy = hip
+    if p["view"] == "left":
+        rect(g, hx - 4, hy - 1, hx + 2, hy + 5, METAL)
+        put(g, hx - 2, hy + 1, GEM)
+    else:
+        rect(g, hx - 8, hy - 1, hx - 2, hy + 5, METAL)
+        rect(g, hx + 2, hy - 1, hx + 8, hy + 5, METAL)
+        put(g, hx - 5, hy + 1, GEM)
+        put(g, hx + 5, hy + 1, GEM)
+    put(g, hx, hy + 3, METAL)
+
+
+def paint_veris_boots(g, p):
+    view = p["view"]
+    for fx, fy in (p["foot_m"], p["foot_o"]):
+        rect(g, fx - 3, fy - 11, fx + 3, fy - 2, CLOTH)
+        rim = fx + 3 if view == "left" else fx - 3
+        rect(g, rim, fy - 10, rim, fy - 3, CLOTH2)
+        rect(g, fx - 2, fy - 9, fx + 2, fy - 5, METAL)
+        put(g, fx, fy - 7, GEM)
+        rect(g, fx - 4, fy - 2, fx + 4, fy, CLOTH)
+        if view == "left":
+            rect(g, fx + 3, fy - 5, fx + 5, fy, CLOTH)
+            put(g, fx + 4, fy - 2, METAL)
+        else:
+            rect(g, fx - 1, fy - 1, fx + 1, fy - 1, METAL)
+        put(g, fx, fy, CLOTH)
+
+
+def paint_veris_gauntlet(g, p, side):
+    shoulder, hand = arm_points(p, side)
+    hx, hy = hand
+    sx, sy = shoulder
+    # Bracer covers the forearm so a thrust does not show bare skin.
+    stroke(g, hx, hy, hx + (sx - hx) * 0.5, hy + (sy - hy) * 0.5, METAL, 4)
+    ell(g, hx, hy, 4.2, 3.6, METAL)
+    rect(g, hx - 3, hy - 5, hx + 3, hy - 3, TRIM)
+    rect(g, hx - 2, hy - 4, hx + 2, hy - 4, METAL)
+    put(g, hx, hy - 2, ACCENT)
+    put(g, hx + (1 if side == "near" else -1), hy, GEM)
+    put(g, hx, hy, METAL)
+
+
+def paint_ferro_blade(g, p):
+    """Angular silver sword on the same arc as the arming sword, with a violet edge."""
+    x, y = p["hand_m"]
+    dx, dy = sword_tip(p)
+    if p["anim"] == "attack":
+        x0, y0 = x, y
+    elif p["view"] == "down":
+        x0, y0 = x - 4, y
+    elif p["view"] == "up":
+        x0, y0 = x + 4, y
+    else:
+        x0, y0 = x - 6, y - 1
+    mag = max((dx * dx + dy * dy) ** 0.5, 1)
+    px, py = -dy / mag, dx / mag
+    stroke(g, x0 + px * 2, y0 + py * 2, x0 + dx + px * 2, y0 + dy + py * 2, ACCENT, 1)
+    stroke(g, x0, y0, x0 + dx, y0 + dy, METAL, 3)
+    gx = x0 + dx * 0.18
+    gy = y0 + dy * 0.18
+    stroke(g, gx - px * 5, gy - py * 3, gx + px * 3, gy + py * 4, TRIM, 2)
+    put(g, round(gx), round(gy), GEM)
+    stroke(g, x, y, x - dx * 0.16, y - dy * 0.16, TRIM, 2)
+    put(g, x0 + dx, y0 + dy, WHITE)
+    put(g, x, y, METAL)
+
+
 PAINTERS = {
     ("body", "base"): paint_body,
     ("arm_far", "base"): lambda g, p: paint_arm(g, p, "far"),
     ("arm_near", "base"): lambda g, p: paint_arm(g, p, "near"),
     ("hair", "short"): lambda g, p: paint_hair(g, p, "short"),
     ("hair", "long"): lambda g, p: paint_hair(g, p, "long"),
+    ("hair", "hair_long_streak"): paint_hair_streak,
     ("head", "cap"): paint_cap,
     ("head", "mail_coif"): paint_coif,
     ("head", "helm_plain"): paint_helm,
+    ("head", "veris_circlet"): paint_circlet,
     ("chest", "tunic"): paint_tunic,
     ("chest", "hauberk"): paint_hauberk,
     ("chest", "plate"): paint_plate,
+    ("chest", "veris_vest_plate"): paint_veris_vest,
     ("sleeve_far", "tunic"): lambda g, p: paint_sleeve(g, p, "tunic", "far"),
     ("sleeve_far", "hauberk"): lambda g, p: paint_sleeve(g, p, "hauberk", "far"),
     ("sleeve_far", "plate"): lambda g, p: paint_sleeve(g, p, "plate", "far"),
+    ("sleeve_far", "veris_vest_plate"): lambda g, p: paint_veris_sleeve(g, p, "far"),
     ("sleeve_near", "tunic"): lambda g, p: paint_sleeve(g, p, "tunic", "near"),
     ("sleeve_near", "hauberk"): lambda g, p: paint_sleeve(g, p, "hauberk", "near"),
     ("sleeve_near", "plate"): lambda g, p: paint_sleeve(g, p, "plate", "near"),
+    ("sleeve_near", "veris_vest_plate"): lambda g, p: paint_veris_sleeve(g, p, "near"),
     ("legs", "trousers"): paint_trousers,
     ("legs", "mail_chausses"): paint_chausses,
     ("legs", "greaves"): paint_greaves,
+    ("legs", "veris_greaves"): paint_veris_greaves,
     ("feet", "boots"): paint_boots,
     ("feet", "mail_boots"): paint_mail_boots,
     ("feet", "sabatons"): paint_sabatons,
+    ("feet", "veris_heeled_boots"): paint_veris_boots,
     ("hand_far", "hand_wraps"): lambda g, p: paint_wraps(g, p, "far"),
     ("hand_far", "gloves"): lambda g, p: paint_gloves(g, p, "far"),
     ("hand_far", "gauntlets"): lambda g, p: paint_gauntlets(g, p, "far"),
+    ("hand_far", "veris_gauntlets"): lambda g, p: paint_veris_gauntlet(g, p, "far"),
     ("hand_near", "hand_wraps"): lambda g, p: paint_wraps(g, p, "near"),
     ("hand_near", "gloves"): lambda g, p: paint_gloves(g, p, "near"),
     ("hand_near", "gauntlets"): lambda g, p: paint_gauntlets(g, p, "near"),
+    ("hand_near", "veris_gauntlets"): lambda g, p: paint_veris_gauntlet(g, p, "near"),
     ("back", "cape"): paint_cape,
     ("back", "cloak"): paint_cloak,
     ("back", "quiver"): paint_quiver,
+    ("back", "veris_longcoat"): paint_veris_coat,
     ("main", "sword"): paint_sword,
+    ("main", "ferro_blade"): paint_ferro_blade,
     ("main", "bow"): paint_bow,
     ("main", "pistol"): paint_pistol,
     ("off", "shield"): paint_shield,
@@ -1079,6 +1315,19 @@ VARIANTS = (
     ("gilded", "Gilded", pal(metal="#E2E6EE", trim="#C99A3A", cloth="#3D5A9C", cloth2="#C8372E")),
     ("moss", "Moss", pal(metal="#C5CDB0", trim="#4E6E34", cloth="#3F5A2A", cloth2="#C99A3A", leather="#4A3820")),
     ("crimson", "Crimson", pal(metal="#4A4450", trim="#C8372E", cloth="#7A1E2A", cloth2="#E0B040", leather="#4A2420")),
+    ("veris", "Veris", pal(
+        skin="#F0D2C2",
+        hair="#1B1D26",
+        eye="#C9B6FF",
+        cloth="#1B1D26",
+        cloth2="#232634",
+        metal="#B9BCC6",
+        trim="#5D5F6B",
+        leather="#232634",
+        accent="#B794FF",
+        white="#E4E2EE",
+        gem="#5B4A8A",
+    )),
 )
 
 
@@ -1193,7 +1442,7 @@ def write_palettes(tables):
 def write_manifest(tables):
     def items_for(slot):
         if slot == "hands":
-            return [{"id": item, "name": NAMES[item]} for item in ("hand_wraps", "gloves", "gauntlets")]
+            return [{"id": item, "name": NAMES[item]} for item in ("hand_wraps", "gloves", "gauntlets", "veris_gauntlets")]
         found = []
         for s, item in PAINTERS:
             if s == slot and slot != "body":
@@ -1301,6 +1550,21 @@ def write_manifest(tables):
                     "off": "lantern",
                 },
             },
+            {
+                "id": "veris",
+                "name": "Veris",
+                "variant": "veris",
+                "loadout": {
+                    "hair": "hair_long_streak",
+                    "head": "veris_circlet",
+                    "chest": "veris_vest_plate",
+                    "legs": "veris_greaves",
+                    "feet": "veris_heeled_boots",
+                    "hands": "veris_gauntlets",
+                    "back": "veris_longcoat",
+                    "main": "ferro_blade",
+                },
+            },
         ],
     }
     with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as fh:
@@ -1386,6 +1650,111 @@ def contact_sheet(sheets, tables):
     print("contact", path, img.size)
 
 
+VERIS_LOADOUT = {
+    "hair": "hair_long_streak",
+    "head": "veris_circlet",
+    "chest": "veris_vest_plate",
+    "legs": "veris_greaves",
+    "feet": "veris_heeled_boots",
+    "hands": "veris_gauntlets",
+    "back": "veris_longcoat",
+    "main": "ferro_blade",
+}
+
+VERIS_STILLS = (
+    ("hair", "hair_long_streak"),
+    ("head", "veris_circlet"),
+    ("chest", "veris_vest_plate"),
+    ("sleeve_far", "veris_vest_plate"),
+    ("sleeve_near", "veris_vest_plate"),
+    ("legs", "veris_greaves"),
+    ("feet", "veris_heeled_boots"),
+    ("hand_far", "veris_gauntlets"),
+    ("hand_near", "veris_gauntlets"),
+    ("back", "veris_longcoat"),
+    ("main", "ferro_blade"),
+)
+
+
+def export_veris_stills():
+    """Idle four-facing stills for the concept folder. sheets.py and doll.py both call this."""
+    table = build_table(next(src for vid, _name, src in VARIANTS if vid == "veris"))
+    root = os.path.join(HERE, "layers")
+    for slot, item in VERIS_STILLS:
+        folder = os.path.join(root, slot)
+        os.makedirs(folder, exist_ok=True)
+        for view in DIRS:
+            facing = "left" if view == "right" else view
+            pose = make_pose("idle", facing, 0)
+            mask = grid()
+            PAINTERS[(slot, item)](mask, pose)
+            darker = slot in ("sleeve_far", "hand_far") and facing == "left"
+            idx = shade(mask, darken=darker)
+            if view == "right":
+                idx = mirror_grid(idx)
+            colorize(idx, table).save(os.path.join(folder, f"{item}_{view}.png"))
+    print("veris stills", len(VERIS_STILLS) * len(DIRS))
+
+
+def veris_contact(sheets, tables):
+    """Idle, walk, and attack in four directions, on a mid ground so the black coat reads."""
+    table = tables["veris"]
+    scale = 2
+    groups = (("idle", 4), ("walk", 8), ("attack", 6))
+    gap = 10
+    label_w = 52
+    width = label_w + sum(count * N * scale for _name, count in groups) + gap * (len(groups) - 1)
+    height = 36 + len(DIRS) * N * scale
+    img = Image.new("RGBA", (width, height), (122, 114, 102, 255))
+    draw = ImageDraw.Draw(img)
+    pen = font(14)
+    small = font(12)
+    draw.text((8, 8), "Veris, idle walk attack, down left up right", fill=(243, 239, 228, 255), font=pen)
+    x = label_w
+    for name, count in groups:
+        draw.text((x, 20), name, fill=(28, 26, 24, 255), font=small)
+        x += count * N * scale + gap
+    for ri, view in enumerate(DIRS):
+        y = 36 + ri * N * scale
+        draw.text((6, y + 8), view, fill=(243, 239, 228, 255), font=small)
+        x = label_w
+        for name, count in groups:
+            for frame in range(count):
+                piece = composite(sheets, VERIS_LOADOUT, name, view, frame, table)
+                big = piece.resize((N * scale, N * scale), Image.Resampling.NEAREST)
+                img.alpha_composite(big, (x, y))
+                x += N * scale
+            x += gap
+    path = os.path.join(OUT, "veris-contact.png")
+    img.save(path)
+    print("veris contact", path, img.size)
+    return path
+
+
+def veris_walk_gif(sheets, tables):
+    table = tables["veris"]
+    scale = 3
+    label_w = 56
+    width = label_w + N * scale
+    height = len(DIRS) * N * scale
+    frames = []
+    small = font(13)
+    for frame in range(8):
+        img = Image.new("RGBA", (width, height), (122, 114, 102, 255))
+        draw = ImageDraw.Draw(img)
+        for ri, view in enumerate(DIRS):
+            y = ri * N * scale
+            draw.text((6, y + 6), view, fill=(243, 239, 228, 255), font=small)
+            piece = composite(sheets, VERIS_LOADOUT, "walk", view, frame, table)
+            big = piece.resize((N * scale, N * scale), Image.Resampling.NEAREST)
+            img.alpha_composite(big, (label_w, y))
+        frames.append(img.convert("RGB"))
+    path = os.path.join(OUT, "veris-walk.gif")
+    frames[0].save(path, save_all=True, append_images=frames[1:], duration=90, loop=0, disposal=2)
+    print("veris gif", path)
+    return path
+
+
 def main():
     tables = {vid: build_table(src) for vid, _label, src in VARIANTS}
     sheets, problems = bake_sheets()
@@ -1393,6 +1762,9 @@ def main():
     manifest = write_manifest(tables)
     filmstrip(sheets, tables, manifest)
     contact_sheet(sheets, tables)
+    export_veris_stills()
+    veris_contact(sheets, tables)
+    veris_walk_gif(sheets, tables)
     if problems:
         print(f"{len(problems)} alignment problems")
         for line in problems[:40]:

@@ -2,11 +2,11 @@
 
 This is the list of unique silhouettes to draw for the hero, not the list of every loot drop. Mixing these pieces is the fun of FerVois: each shape changes how the character looks and how they fight. Recolors, dyes, rarity and enhancement do not add drawings.
 
-Status: inventory, plus a playable test. 24 keys now have full idle, walk, and attack sheets in `art/doll/hero/` and are marked **full sheet**. Keys that still only have a concept idle in `art/doll/layers/` stay **have idle**. Everything else is **to draw**.
+Status: inventory, plus a playable test. 31 keys now have full idle, walk, and attack sheets in `art/doll/hero/` and are marked **full sheet**. Keys that still only have a concept idle in `art/doll/layers/` stay **have idle**. Everything else is **to draw**. The Veris outfit is seven of those full sheets (`veris_circlet`, `veris_vest_plate`, `veris_greaves`, `veris_heeled_boots`, `veris_gauntlets`, `veris_longcoat`, `ferro_blade`) plus the hair style `hair_long_streak`, which is not a clothing silhouette. Glow pixels use the accent palette slot.
 
 ## 1. How to read this list
 
-- One row is one art key: a unique 64 x 64 layer shape. Palettes such as Steel, Gilded, Moss, Crimson and Ascended reuse that same drawing.
+- One row is one art key: a unique 64 x 64 layer shape. Palettes such as Steel, Gilded, Moss, Crimson, Veris and Ascended reuse that same drawing.
 - Visible slots that need art: head, chest, legs, feet, hands, back, main hand, off hand. Jewelry (belt, amulet, rings, trinket) drops as loot but has no layer yet.
 - Weight sets the body feel: **Light** is faster and dodgier with less armor, **Medium** is balanced, **Heavy** is slower, sturdier and harder to stagger.
 - Stance is the fighting-style hook, and pieces are meant to be mixed. Two pieces that share a stance or a family give a small echo bonus; four or more give a slightly larger one. There are no mandatory sets.
@@ -25,17 +25,17 @@ Status: inventory, plus a playable test. 24 keys now have full idle, walk, and a
 
 | Slot | Full sheet | Have idle | To draw | Total |
 |---|---:|---:|---:|---:|
-| Head | 3 | 4 | 15 | 22 |
-| Chest | 3 | 3 | 16 | 22 |
-| Legs | 3 | 0 | 13 | 16 |
-| Feet | 3 | 0 | 11 | 14 |
-| Hands | 3 | 0 | 7 | 10 |
-| Back | 3 | 0 | 7 | 10 |
-| Main hand | 3 | 2 | 16 | 21 |
+| Head | 4 | 4 | 15 | 23 |
+| Chest | 4 | 3 | 16 | 23 |
+| Legs | 4 | 0 | 13 | 17 |
+| Feet | 4 | 0 | 11 | 15 |
+| Hands | 4 | 0 | 7 | 11 |
+| Back | 4 | 0 | 7 | 11 |
+| Main hand | 4 | 2 | 16 | 22 |
 | Off hand | 3 | 0 | 11 | 14 |
-| **Clothing subtotal** | **18** | **7** | **69** | **94** |
-| **Weapons subtotal** | **6** | **2** | **27** | **35** |
-| **All unique silhouettes** | **24** | **9** | **96** | **129** |
+| **Clothing subtotal** | **24** | **7** | **69** | **100** |
+| **Weapons subtotal** | **7** | **2** | **27** | **36** |
+| **All unique silhouettes** | **31** | **9** | **96** | **136** |
 
 Draw clothing first (head, chest, legs, feet, then hands and back). That is the mix-and-match wardrobe. Weapons come next, because they change the basic attack. Walk and attack frames come after the idle four-facing set exists for each shape.
 
@@ -46,6 +46,7 @@ Draw clothing first (head, chest, legs, feet, then hands and back). That is the 
 | `cap` | Knit Cap | Cloth | Light | Skirmish | R0 | full sheet | Shows hair. Hollowmere starter. |
 | `bandana` | Wayscarf | Cloth | Light | Hunt | R1 | to draw | Face wrap, slight stealth. Shows hair. |
 | `circlet` | Lumen Circlet | Cloth | Light | Channel | R1 | to draw | Shows hair. Focus and mana. |
+| `veris_circlet` | Ferro Circlet | Plate | Light | Channel | R0 | full sheet | Shows hair. Thin silver band, violet stone. Optional on Veris. |
 | `pilgrim_hat` | Pilgrim Hat | Cloth | Light | Hunt | R1 | to draw | Wide brim. Survey and luck. |
 | `cowl` | Fade Cowl | Cloth | Light | Channel | R2 | to draw | Hides hair. Resist vs Fade elites. |
 | `wizard_hat` | Starloom Hat | Cloth | Light | Channel | R2 | have idle | Hides hair. Classic arcanist point. |
@@ -91,6 +92,7 @@ Draw clothing first (head, chest, legs, feet, then hands and back). That is the 
 | `coil_vest` | Coil Vest | Tech | Light | Rig | R2 | to draw | Wired cloth, gadget slots, heat. |
 | `brass_plate` | Brass Cuirass | Tech | Heavy | Rig | R3 | to draw | Tinker marshal look, split from plain plate. |
 | `lumen_cuirass` | Heart-Forge Cuirass | Tech | Heavy | Channel | R5 | to draw | One cyan accent. Relic-tier look. |
+| `veris_vest_plate` | Ocular Vest | Plate | Medium | Channel | R0 | full sheet | Charcoal vest, silver plate, Ocular Core. Sleeves split near/far with spiked pauldrons. |
 | `surcoat` | Wayfarer Surcoat | Cloth | Light | Hunt | R1 | to draw | Travel tabard over a plain shirt. |
 
 ## 5. Legs (pants)
@@ -109,6 +111,7 @@ Draw clothing first (head, chest, legs, feet, then hands and back). That is the 
 | `crow_trews` | Crowfeather Trews | Leather | Light | Hunt | R3 | to draw | Dark, feathered cuffs. |
 | `mail_chausses` | Mail Chausses | Mail | Medium | Guard | R1 | full sheet | Mail over the thighs. |
 | `greaves` | Plate Greaves | Plate | Heavy | Guard | R1 | full sheet | Knight T2 look. |
+| `veris_greaves` | Ferro Greaves | Plate | Medium | Channel | R0 | full sheet | Silver thigh plates and greaves, small violet gems. |
 | `tassets` | Plate Tassets | Plate | Heavy | Guard | R2 | to draw | Hanging hip plates. |
 | `fluted_greaves` | Fluted Greaves | Plate | Heavy | Guard | R3 | to draw | Fancy fluting, more poise. |
 | `choir_tassets` | Choir Tassets | Plate | Medium | Channel | R4 | to draw | Choir thigh plates. |
@@ -130,6 +133,7 @@ Draw clothing first (head, chest, legs, feet, then hands and back). That is the 
 | `root_boots` | Rootboots | Leather | Light | Wild | R2 | to draw | Nature and grove move. |
 | `mail_boots` | Mail Boots | Mail | Medium | Guard | R1 | full sheet | Mail over the instep. |
 | `sabatons` | Sabatons | Plate | Heavy | Guard | R1 | full sheet | Knight T2 look. |
+| `veris_heeled_boots` | Heeled Ferro Boots | Plate | Medium | Channel | R0 | full sheet | Tall black heels with silver plates and a violet gem. |
 | `heavy_sabatons` | Locked Sabatons | Plate | Heavy | Guard | R3 | to draw | Slower, much harder to stagger. |
 | `mag_boots` | Clamp Boots | Tech | Medium | Rig | R4 | to draw | Resist knockback, cave walls. |
 
@@ -145,6 +149,7 @@ Draw clothing first (head, chest, legs, feet, then hands and back). That is the 
 | `thorn_gloves` | Bloom Thorn Gloves | Leather | Light | Wild | R2 | to draw | Nature on hit. |
 | `mail_mittens` | Mail Mittens | Mail | Medium | Guard | R2 | to draw | |
 | `gauntlets` | Plate Gauntlets | Plate | Heavy | Guard | R1 | full sheet | Knight T2 look. |
+| `veris_gauntlets` | Ferro Gauntlets | Plate | Medium | Channel | R0 | full sheet | Silver bracers and gauntlets, split near/far, violet crystal. |
 | `insulated` | Insulated Gloves | Tech | Medium | Rig | R3 | to draw | Heat cap and vent. |
 | `choir_gauntlets` | Choir Gauntlets | Plate | Medium | Channel | R4 | to draw | Lumen on block or cast. |
 
@@ -154,6 +159,7 @@ Draw clothing first (head, chest, legs, feet, then hands and back). That is the 
 |---|---|---|---|---|---|---|---|
 | `short_cape` | Half Cape | Cloth | Light | Skirmish | R1 | to draw | Shoulder only. |
 | `cape` | Cape | Cloth | Light | Guard | R2 | full sheet | Default cape, class T3 looks. |
+| `veris_longcoat` | Veris Longcoat | Cloth | Medium | Channel | R0 | full sheet | Floor-length black coat, navy rim, silver edge, three swinging tails. Eye emblem and hip chain on the back. Drapes behind the legs. |
 | `cloak` | Travel Cloak | Cloth | Light | Hunt | R1 | full sheet | Weather and quiet. |
 | `vine_cloak` | Bloomcloak | Cloth | Light | Wild | R2 | to draw | Leaf mantle. |
 | `choir_mantle` | Choir Mantle | Cloth | Medium | Channel | R4 | to draw | Wide formal mantle. |
@@ -171,6 +177,7 @@ Each weapon class sets the basic attack animation, range and timing. That is the
 |---|---|---|---|---|---|---|---|
 | `dagger` | Side Blade | Slash, fast | 1H | Hunt | R0 | to draw | Short range, high speed. |
 | `sword` | Arming Sword | Slash | 1H | Guard | R0 | full sheet | Default knight blade. |
+| `ferro_blade` | Ferro Blade | Slash, lumen | 1H | Channel | R0 | full sheet | Angular silver sword with a violet edge. Uses the arming-sword swing. |
 | `longsword` | Longsword | Slash | 1H | Skirmish | R1 | to draw | Longer reach than the arming sword. |
 | `greatsword` | Greatsword | Slash, heavy | 2H | Skirmish | R2 | to draw | Wide slow swings. |
 | `hand_axe` | Hand Axe | Slash | 1H | Skirmish | R1 | to draw | Bleed-on-hit feel, no blood: spark chips. |
@@ -191,7 +198,7 @@ Each weapon class sets the basic attack animation, range and timing. That is the
 | `laser_lance` | Laser Lance | Beam | 2H | Rig | R4 | to draw | Relic. Tinker Lancer tech pop. |
 | `wrench` | Workshop Wrench | Strike | 1H | Rig | R1 | to draw | Melee and turret repair. |
 
-The wrench makes this slot 21 rows. It stays in the first weapons pass because the Engineer tree needs a visible melee tool.
+The wrench and the ferro blade make this slot 22 rows. The wrench stays in the first weapons pass because the Engineer tree needs a visible melee tool.
 
 ## 10. Off hand
 
@@ -234,7 +241,9 @@ A thin `belt` layer can be added later if waist items should show. Do not block 
 
 These keys have full idle, walk, and attack sheets under `art/doll/hero/`:
 
-`cap`, `mail_coif`, `helm_plain`, `tunic`, `hauberk`, `plate`, `trousers`, `mail_chausses`, `greaves`, `boots`, `mail_boots`, `sabatons`, `hand_wraps`, `gloves`, `gauntlets`, `cloak`, `quiver`, `cape`, `sword`, `bow`, `pistol`, `shield`, `tome`, `lantern`.
+`cap`, `mail_coif`, `helm_plain`, `veris_circlet`, `tunic`, `hauberk`, `plate`, `veris_vest_plate`, `trousers`, `mail_chausses`, `greaves`, `veris_greaves`, `boots`, `mail_boots`, `sabatons`, `veris_heeled_boots`, `hand_wraps`, `gloves`, `gauntlets`, `veris_gauntlets`, `cloak`, `quiver`, `cape`, `veris_longcoat`, `sword`, `ferro_blade`, `bow`, `pistol`, `shield`, `tome`, `lantern`.
+
+Hair styles with full sheets, not counted as clothing silhouettes: `short`, `long`, `hair_long_streak`.
 
 These keys still have only an idle concept frame under `art/doll/layers/`:
 

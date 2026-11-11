@@ -57,12 +57,12 @@
    "sleeve_near",
    "arm_near",
    "body",
-   "hair",
    "legs",
    "feet",
    "chest",
    "head",
-   "back"
+   "back",
+   "hair"
   ],
   "left": [
    "back",
@@ -104,7 +104,6 @@
    "up": {
     "1": [
      "body",
-     "hair",
      "legs",
      "feet",
      "chest",
@@ -117,11 +116,11 @@
      "sleeve_near",
      "hand_near",
      "off",
-     "back"
+     "back",
+     "hair"
     ],
     "2": [
      "body",
-     "hair",
      "legs",
      "feet",
      "chest",
@@ -134,11 +133,11 @@
      "sleeve_near",
      "hand_near",
      "off",
-     "back"
+     "back",
+     "hair"
     ],
     "3": [
      "body",
-     "hair",
      "legs",
      "feet",
      "chest",
@@ -151,7 +150,8 @@
      "sleeve_near",
      "hand_near",
      "off",
-     "back"
+     "back",
+     "hair"
     ]
    }
   }
@@ -178,6 +178,10 @@
     {
      "id": "long",
      "name": "Long hair"
+    },
+    {
+     "id": "hair_long_streak",
+     "name": "Long hair, silver streak"
     }
    ]
   },
@@ -197,6 +201,10 @@
     {
      "id": "helm_plain",
      "name": "Plain Helm"
+    },
+    {
+     "id": "veris_circlet",
+     "name": "Ferro Circlet"
     }
    ]
   },
@@ -216,6 +224,10 @@
     {
      "id": "plate",
      "name": "Plate Cuirass"
+    },
+    {
+     "id": "veris_vest_plate",
+     "name": "Ocular Vest"
     }
    ]
   },
@@ -235,6 +247,10 @@
     {
      "id": "greaves",
      "name": "Plate Greaves"
+    },
+    {
+     "id": "veris_greaves",
+     "name": "Ferro Greaves"
     }
    ]
   },
@@ -254,6 +270,10 @@
     {
      "id": "sabatons",
      "name": "Sabatons"
+    },
+    {
+     "id": "veris_heeled_boots",
+     "name": "Heeled Ferro Boots"
     }
    ]
   },
@@ -273,6 +293,10 @@
     {
      "id": "gauntlets",
      "name": "Plate Gauntlets"
+    },
+    {
+     "id": "veris_gauntlets",
+     "name": "Ferro Gauntlets"
     }
    ]
   },
@@ -292,6 +316,10 @@
     {
      "id": "quiver",
      "name": "Quiver"
+    },
+    {
+     "id": "veris_longcoat",
+     "name": "Veris Longcoat"
     }
    ]
   },
@@ -303,6 +331,10 @@
     {
      "id": "sword",
      "name": "Arming Sword"
+    },
+    {
+     "id": "ferro_blade",
+     "name": "Ferro Blade"
     },
     {
      "id": "bow",
@@ -361,6 +393,11 @@
    "file": "hair/long.png"
   },
   {
+   "slot": "hair",
+   "item": "hair_long_streak",
+   "file": "hair/hair_long_streak.png"
+  },
+  {
    "slot": "head",
    "item": "cap",
    "file": "head/cap.png"
@@ -374,6 +411,11 @@
    "slot": "head",
    "item": "helm_plain",
    "file": "head/helm_plain.png"
+  },
+  {
+   "slot": "head",
+   "item": "veris_circlet",
+   "file": "head/veris_circlet.png"
   },
   {
    "slot": "chest",
@@ -391,6 +433,11 @@
    "file": "chest/plate.png"
   },
   {
+   "slot": "chest",
+   "item": "veris_vest_plate",
+   "file": "chest/veris_vest_plate.png"
+  },
+  {
    "slot": "sleeve_far",
    "item": "tunic",
    "file": "sleeve_far/tunic.png"
@@ -404,6 +451,11 @@
    "slot": "sleeve_far",
    "item": "plate",
    "file": "sleeve_far/plate.png"
+  },
+  {
+   "slot": "sleeve_far",
+   "item": "veris_vest_plate",
+   "file": "sleeve_far/veris_vest_plate.png"
   },
   {
    "slot": "sleeve_near",
@@ -421,6 +473,11 @@
    "file": "sleeve_near/plate.png"
   },
   {
+   "slot": "sleeve_near",
+   "item": "veris_vest_plate",
+   "file": "sleeve_near/veris_vest_plate.png"
+  },
+  {
    "slot": "legs",
    "item": "trousers",
    "file": "legs/trousers.png"
@@ -434,6 +491,11 @@
    "slot": "legs",
    "item": "greaves",
    "file": "legs/greaves.png"
+  },
+  {
+   "slot": "legs",
+   "item": "veris_greaves",
+   "file": "legs/veris_greaves.png"
   },
   {
    "slot": "feet",
@@ -451,6 +513,11 @@
    "file": "feet/sabatons.png"
   },
   {
+   "slot": "feet",
+   "item": "veris_heeled_boots",
+   "file": "feet/veris_heeled_boots.png"
+  },
+  {
    "slot": "hand_far",
    "item": "hand_wraps",
    "file": "hand_far/hand_wraps.png"
@@ -464,6 +531,11 @@
    "slot": "hand_far",
    "item": "gauntlets",
    "file": "hand_far/gauntlets.png"
+  },
+  {
+   "slot": "hand_far",
+   "item": "veris_gauntlets",
+   "file": "hand_far/veris_gauntlets.png"
   },
   {
    "slot": "hand_near",
@@ -481,6 +553,11 @@
    "file": "hand_near/gauntlets.png"
   },
   {
+   "slot": "hand_near",
+   "item": "veris_gauntlets",
+   "file": "hand_near/veris_gauntlets.png"
+  },
+  {
    "slot": "back",
    "item": "cape",
    "file": "back/cape.png"
@@ -496,9 +573,19 @@
    "file": "back/quiver.png"
   },
   {
+   "slot": "back",
+   "item": "veris_longcoat",
+   "file": "back/veris_longcoat.png"
+  },
+  {
    "slot": "main",
    "item": "sword",
    "file": "main/sword.png"
+  },
+  {
+   "slot": "main",
+   "item": "ferro_blade",
+   "file": "main/ferro_blade.png"
   },
   {
    "slot": "main",
@@ -810,6 +897,77 @@
     "#f2789bff",
     "#ff98a1ff"
    ]
+  },
+  {
+   "id": "veris",
+   "name": "Veris",
+   "colors": [
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#00000000",
+    "#41373dff",
+    "#a9817bff",
+    "#c79c95ff",
+    "#f0d2c2ff",
+    "#fffbebff",
+    "#17131eff",
+    "#000000ff",
+    "#000000ff",
+    "#1b1d26ff",
+    "#353545ff",
+    "#393249ff",
+    "#7e74b8ff",
+    "#968cd6ff",
+    "#c9b6ffff",
+    "#fbddffff",
+    "#17131eff",
+    "#000000ff",
+    "#000000ff",
+    "#1b1d26ff",
+    "#353545ff",
+    "#181520ff",
+    "#000000ff",
+    "#07080bff",
+    "#232634ff",
+    "#3d3d53ff",
+    "#36333eff",
+    "#68697fff",
+    "#878b9dff",
+    "#b9bcc6ff",
+    "#eae5d9ff",
+    "#24202bff",
+    "#1c1c24ff",
+    "#363842ff",
+    "#5d5f6bff",
+    "#8f8a7fff",
+    "#181520ff",
+    "#000000ff",
+    "#07080bff",
+    "#232634ff",
+    "#3d3d53ff",
+    "#2d1f1fff",
+    "#451e11ff",
+    "#632d1bff",
+    "#8c5a2eff",
+    "#ab7b42ff",
+    "#362b49ff",
+    "#6c5cb8ff",
+    "#826fd6ff",
+    "#b794ffff",
+    "#eeb7ffff",
+    "#3f3a46ff",
+    "#8a8ba7ff",
+    "#acb0c5ff",
+    "#e4e2eeff",
+    "#ffffffff",
+    "#231c32ff",
+    "#241e43ff",
+    "#352e61ff",
+    "#5b4a8aff",
+    "#8565a9ff"
+   ]
   }
  ],
  "presets": [
@@ -874,6 +1032,21 @@
     "back": "cloak",
     "main": "pistol",
     "off": "lantern"
+   }
+  },
+  {
+   "id": "veris",
+   "name": "Veris",
+   "variant": "veris",
+   "loadout": {
+    "hair": "hair_long_streak",
+    "head": "veris_circlet",
+    "chest": "veris_vest_plate",
+    "legs": "veris_greaves",
+    "feet": "veris_heeled_boots",
+    "hands": "veris_gauntlets",
+    "back": "veris_longcoat",
+    "main": "ferro_blade"
    }
   }
  ]
