@@ -111,6 +111,8 @@ export class PlayScene extends Phaser.Scene {
       loadout: this.loadout,
       variant: this.variant,
       onChange: (): void => {
+        // Preset buttons replace wardrobe.loadout. Keep the scene on that object.
+        this.loadout = wardrobe.loadout
         this.variant = wardrobe.variant
         this.doll.setLoadout(this.loadout, this.variant)
         for (const doll of this.turntable) doll.setLoadout(this.loadout, this.variant)
