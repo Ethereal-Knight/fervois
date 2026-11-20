@@ -42,5 +42,18 @@ python3 -m venv .venv
 .venv/bin/python art/doll/sheets.py
 ```
 
+## Splat chamber spike
+
+A one-room tech spike for a pixel-splat look, built with [Ink Studio](https://github.com/siliconjungle/shapeshift-labs-ink-studio) (MIT, commit `9d73158d6b8e92b2a4571e4a7ce98924d0759556`). Veris is a sculpted puppet with swappable main-hand parts. The page is published at [https://ethereal-knight.github.io/fervois/splat/](https://ethereal-knight.github.io/fervois/splat/).
+
+```bash
+cd prototype/splat
+npm install
+npm test
+npm run dev
+```
+
+WASD or the arrow keys move. J, K, or a click attacks. Space or Shift dashes. G swaps the ferro blade for a focus. On a phone, use the stick plus the Attack and Dash buttons. Add `?enemies=50`, `100`, `200`, or `500` for a crowd stress test. The Pages workflow builds this app with Vite base `/fervois/splat/` and copies it into the doll-test site.
+
 ## Design tools
 Designs live in [FigCraft](https://getartcraft.com/apps/figcraft) (open source, github.com/storytold/figcraft). Not Figma.

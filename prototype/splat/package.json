@@ -1,0 +1,22 @@
+{
+  "name": "fervois-splat",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "bundle": "node scripts/bundle-ink.mjs",
+    "predev": "node scripts/bundle-ink.mjs",
+    "prebuild": "node scripts/bundle-ink.mjs",
+    "pretest": "node scripts/bundle-ink.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test test/world.test.mjs"
+  },
+  "dependencies": {
+    "@shapeshift-labs/ink-studio": "git+https://github.com/siliconjungle/shapeshift-labs-ink-studio.git#9d73158d6b8e92b2a4571e4a7ce98924d0759556"
+  },
+  "devDependencies": {
+    "vite": "8.3.7"
+  }
+}

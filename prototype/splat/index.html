@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>FerVois splat chamber</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="stage">
+      <canvas id="view" width="480" height="270" aria-label="Splat chamber"></canvas>
+      <div id="numbers" aria-hidden="true"></div>
+      <p id="banner" hidden>CHAMBER CLEARED</p>
+      <p id="title" hidden>Ocular Yard</p>
+      <div id="fade"></div>
+      <div id="dead" hidden>
+        <p>You fall.</p>
+        <button id="restart" type="button">Restart</button>
+      </div>
+    </div>
+    <header id="hud">
+      <div id="left">
+        <div id="hp" aria-label="Health">
+          <span id="hp-fill"></span>
+        </div>
+        <p id="hp-text">8/8</p>
+        <p id="dash-row">Dash <span data-dash class="ready"></span><span data-dash class="ready"></span></p>
+      </div>
+      <div id="right">
+        <p>Glint <span id="glint">0</span></p>
+        <p id="room">I-1</p>
+        <p id="fps">FPS --</p>
+      </div>
+    </header>
+    <p id="help">WASD or arrows move. J, K, or click attacks. Space or Shift dashes. G swaps the main hand.</p>
+    <div id="touch">
+      <div id="stick" role="application" aria-label="Move stick"><div id="nub"></div></div>
+      <div id="actions">
+        <button id="attack" type="button">Attack</button>
+        <button id="dash" type="button">Dash</button>
+        <button id="swap" type="button">Swap to focus</button>
+        <button id="stress" type="button">Stress</button>
+      </div>
+    </div>
+    <p id="credit">Splats by Ink Studio (MIT).</p>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
