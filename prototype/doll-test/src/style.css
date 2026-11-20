@@ -32,6 +32,10 @@ html, body {
   image-rendering: crisp-edges;
 }
 
+a.splat-link {
+  color: #f0d7a2;
+}
+
 #panel {
   width: 280px;
   max-height: 100vh;

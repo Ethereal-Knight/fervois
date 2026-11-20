@@ -1,4 +1,7 @@
 node_modules/
+prototype/splat/src/ink-bundle.mjs
+prototype/splat/public/ink-studio.mjs
+prototype/splat/dist/
 figcraft/build/
 .venv/
 *.parquet

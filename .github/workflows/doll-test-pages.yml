@@ -26,7 +26,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: prototype/doll-test/package-lock.json
+          cache-dependency-path: |
+            prototype/doll-test/package-lock.json
+            prototype/splat/package-lock.json
       - name: Setup Pages
         uses: actions/configure-pages@v6
       - name: Install and build
@@ -34,6 +36,13 @@ jobs:
         env:
           VITE_BASE: /fervois/
         run: npm ci && npm run build
+      - name: Install and build splat chamber
+        working-directory: prototype/splat
+        env:
+          VITE_BASE: /fervois/splat/
+        run: npm ci && npm test && npm run build
+      - name: Merge splat into the site
+        run: mkdir -p prototype/doll-test/dist/splat && cp -a prototype/splat/dist/. prototype/doll-test/dist/splat/
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:

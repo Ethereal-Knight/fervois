@@ -1,0 +1,217 @@
+:root {
+  color: #f4efe4;
+  background: #07060e;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  font-size: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #07060e;
+}
+
+body {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+}
+
+#stage {
+  position: relative;
+  width: min(100vw, calc(100dvh * 16 / 9));
+  height: min(100dvh, calc(100vw * 9 / 16));
+  background: #07060e;
+  touch-action: none;
+}
+
+#view {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  display: block;
+}
+
+#numbers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#numbers span {
+  position: absolute;
+  color: #f7f4ff;
+  font-weight: 700;
+  text-shadow: 0 1px 0 #14101c, 1px 0 0 #14101c;
+  transform: translate(-50%, -100%);
+}
+
+#banner, #title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+#banner {
+  top: 18%;
+  color: #ffe14a;
+  font-size: clamp(18px, 4vw, 32px);
+}
+
+#title {
+  top: 28%;
+  color: #c9b6ff;
+  font-size: clamp(20px, 5vw, 36px);
+}
+
+#fade {
+  position: absolute;
+  inset: 0;
+  background: #07060e;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s linear;
+}
+
+#fade.on { opacity: 1; }
+
+#dead {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  background: rgba(7, 6, 14, 0.72);
+}
+
+#dead[hidden] { display: none; }
+
+#hud {
+  position: fixed;
+  inset: 8px 12px auto 12px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  text-shadow: 0 1px 0 #07060e;
+}
+
+#hp {
+  width: 140px;
+  height: 12px;
+  border: 2px solid #f4efe4;
+  background: #14101c;
+}
+
+#hp-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: #ff4ad8;
+}
+
+#hp-text, #dash-row, #right p, #help, #credit {
+  margin: 4px 0;
+}
+
+#dash-row span, #right {
+  text-align: right;
+}
+
+[data-dash] {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 6px;
+  border: 2px solid #f4efe4;
+  border-radius: 50%;
+  background: transparent;
+}
+
+[data-dash].ready { background: #3ee0ff; }
+
+#help, #credit {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  color: #b9bcc6;
+  font-size: 13px;
+}
+
+#help { bottom: 92px; }
+
+#credit { bottom: 8px; }
+
+#touch {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+#stick {
+  width: 112px;
+  height: 112px;
+  border: 2px solid #5d5f6b;
+  border-radius: 50%;
+  position: relative;
+  pointer-events: auto;
+  touch-action: none;
+  background: rgba(20, 16, 28, 0.45);
+}
+
+#nub {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #c9b6ff;
+  position: absolute;
+  left: 34px;
+  top: 34px;
+}
+
+#actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+button {
+  min-width: 112px;
+  min-height: 48px;
+  border: 2px solid #f4efe4;
+  background: #241c38;
+  color: #f4efe4;
+  font: inherit;
+  font-size: 16px;
+}
+
+button:focus-visible {
+  outline: 3px solid #ffe14a;
+  outline-offset: 2px;
+}
+
+@media (max-width: 800px) {
+  #help { display: none; }
+  #touch { bottom: 28px; }
+  #credit { bottom: 4px; font-size: 12px; }
+}
+
+@media (min-width: 900px) {
+  #help { bottom: 12px; right: 280px; }
+  #touch { bottom: 36px; }
+}
