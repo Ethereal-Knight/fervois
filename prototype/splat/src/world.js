@@ -29,7 +29,9 @@ function verisSpec(gearIndex) {
     height: 1.72,
     hp: 8,
     mortal: true,
-    res: 0.06,
+    // Match the room's dab size. The character rig writes discs at about
+    // 0.68 * res, and the floor bakes at 0.32 * 0.46, so 0.2 lands near 0.14.
+    res: 0.2,
     reach: 1.45,
     atk: 'slash',
     fx: 13,
@@ -86,10 +88,10 @@ function verisSpec(gearIndex) {
       S.ball([0.06, 1.52, 0], [0.13, 0.15, 0.14], { r: SKIN }, head)
       S.ball([0.02, 1.62, 0], [0.16, 0.16, 0.17], { r: HAIR }, head)
       S.tube([[0.04, 1.58, 0], [-0.08, 1.15, 0.02], [-0.16, 0.62, 0.04]], 0.11, 0.04, HAIR, head)
-      S.tube([[0.06, 1.58, 0.1], [-0.02, 1.2, 0.12], [-0.08, 0.78, 0.1]], 0.03, 0.015, SILVER, head)
-      S.torus([0.04, 1.66, 0], 0.13, 0.016, { r: SILVER }, head)
-      S.ball([0.14, 1.54, 0.05], 0.018, { r: [11], em: true }, head)
-      S.ball([0.14, 1.54, -0.05], 0.018, { r: [11], em: true }, head)
+      S.tube([[0.06, 1.58, 0.1], [-0.02, 1.2, 0.12], [-0.08, 0.78, 0.1]], 0.055, 0.03, SILVER, head)
+      S.torus([0.04, 1.66, 0], 0.14, 0.04, { r: SILVER }, head)
+      S.ball([0.14, 1.54, 0.05], 0.035, { r: [11], em: true }, head)
+      S.ball([0.14, 1.54, -0.05], 0.035, { r: [11], em: true }, head)
       for (const s of [-1, 1]) {
         const foot = part(T, s < 0 ? 'footL' : 'footR')
         const leg = part(T, s < 0 ? 'legL' : 'legR')
@@ -102,8 +104,8 @@ function verisSpec(gearIndex) {
       }
       S.ball([0.32, 0.98, 0.26], [0.07, 0.05, 0.06], { r: SILVER }, arm)
       S.tube([[0.18, 1.2, 0.22], [0.32, 0.98, 0.26]], 0.045, 0.035, SILVER, arm)
-      S.tube([[0.36, 1.02, 0.26], [0.85, 1.18, 0.26]], 0.035, 0.012, SILVER, blade)
-      S.tube([[0.4, 1.0, 0.29], [0.82, 1.16, 0.3]], 0.012, 0.008, VIOLET, blade)
+      S.tube([[0.36, 1.02, 0.26], [0.85, 1.18, 0.26]], 0.055, 0.028, SILVER, blade)
+      S.tube([[0.4, 1.0, 0.29], [0.82, 1.16, 0.3]], 0.028, 0.016, VIOLET, blade)
       S.ball([0.34, 1.0, 0.26], [0.04, 0.02, 0.07], { r: [5, 10, 11] }, blade)
       S.tube([[0.32, 0.98, 0.26], [0.32, 1.35, 0.26]], 0.02, 0.018, SILVER, focus)
       S.ball([0.32, 1.42, 0.26], 0.07, { r: [11, 14, 15], em: true }, focus)
@@ -275,14 +277,33 @@ export function createSession(kit, options = {}) {
   return session
 }
 
+// Floor dabs are about 0.46 of their spacing. The character rig draws discs
+// at about 0.67 of its spacing, so they melt into a smooth skin. Shrink the
+// covariance after each pose so Veris is the same kind of chunk.
+const SPLAT_FIT = 0.47
+
 export function applyGear(session) {
   const data = session.world.data
-  const hide = session.hand === 'blade' ? session.gear.focus : session.gear.blade
-  if (!hide) return
-  for (const index of hide) {
+  const hidden = new Set(session.hand === 'blade' ? session.gear.focus || [] : session.gear.blade || [])
+  const n = session.player.rig
+  const wobble = session.time || 0
+  for (let index = 0; index < n; index++) {
     const o = (session.at + index) * 16
-    data[o + 1] = -50
-    data[o + 3] = 0
+    if (hidden.has(index)) {
+      data[o + 1] = -50
+      data[o + 3] = 0
+      continue
+    }
+    if (data[o + 1] < -10) continue
+    data[o + 4] *= SPLAT_FIT
+    data[o + 5] *= SPLAT_FIT
+    data[o + 6] *= SPLAT_FIT
+    data[o + 8] *= SPLAT_FIT
+    data[o + 9] *= SPLAT_FIT
+    data[o + 10] *= SPLAT_FIT
+    const boil = Math.sin(wobble * 11 + index * 1.3) * 0.01
+    data[o] += boil
+    data[o + 2] += boil * 0.65
   }
 }
 
